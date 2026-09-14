@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { BUSINESS_INFO } from "@/lib/data";
@@ -16,6 +16,13 @@ const geistMono = localFont({
 
 const siteUrl = "https://indianwheelalignment.com";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -23,24 +30,26 @@ export const metadata: Metadata = {
     template: "%s | Indian Wheel Alignment Kammanahalli",
   },
   description:
-    "Expert computerized wheel alignment, motorcycle fork truing, suspension repair, alloy rim repair, and precision automotive service for cars and bikes in Kammanahalli, Bengaluru. Call 093438 42301.",
+    "Expert computerized laser wheel alignment and precision argon TIG welding & fabrication for cars and bikes in Kammanahalli, Bengaluru. Call 093438 42301.",
   keywords: [
     "wheel alignment in Bengaluru",
     "wheel alignment Kammanahalli",
-    "car repair in Bengaluru",
-    "bike repair in Bengaluru",
-    "car service Kammanahalli",
-    "bike service Kammanahalli",
-    "wheel alignment near Kammanahalli",
-    "vehicle repair Bengaluru",
-    "alloy wheel repair Bengaluru",
-    "suspension repair Bengaluru",
-    "motorcycle handle alignment Bangalore",
-    "bike fork straightening Kammanahalli",
+    "car wheel alignment Bengaluru",
+    "bike wheel alignment Bengaluru",
+    "laser wheel alignment Kammanahalli",
+    "tig welding Bengaluru",
+    "argon tig welding Kammanahalli",
+    "two wheeler alignment Bangalore",
+    "four wheeler alignment Bengaluru",
   ],
   authors: [{ name: "Indian Two and Four Wheeler Alignment and Repair" }],
   creator: "Indian Two and Four Wheeler Alignment and Repair",
   publisher: "Indian Two and Four Wheeler Alignment and Repair",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   alternates: {
     canonical: siteUrl,
   },
@@ -50,7 +59,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "INDIAN TWO AND FOUR WHEELER ALIGNMENT AND REPAIR | Bengaluru",
     description:
-      "Precision computerized laser wheel alignment, motorcycle fork & handle alignment, suspension overhaul, and alloy wheel repair in Kammanahalli, Bengaluru.",
+      "Precision computerized laser wheel alignment and argon TIG welding & fabrication in Kammanahalli, Bengaluru.",
     siteName: "Indian Two and Four Wheeler Alignment and Repair",
     images: [
       {
@@ -65,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "INDIAN TWO AND FOUR WHEELER ALIGNMENT AND REPAIR | Bengaluru",
     description:
-      "Precision alignment, suspension checks, alloy wheel truing, and automotive repair for cars and bikes in Bengaluru. Call 093438 42301.",
+      "Precision computerized laser wheel alignment and argon TIG welding for cars and bikes in Bengaluru. Call 093438 42301.",
     images: ["/main.avif"],
   },
   robots: {
@@ -150,32 +159,16 @@ export default function RootLayout({
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Two-Wheeler Handle & Fork Alignment",
-            description: "Hydraulic front fork straightening, T-stem calibration, and wheel truing for motorcycles.",
+            name: "Two-Wheeler Laser Wheel Alignment",
+            description: "Computerized laser alignment, steering geometry, and tracking for motorcycles.",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Alloy Wheel Repair & Truing",
-            description: "Hydraulic bend removal and radial runout correction for alloy wheels.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Suspension Checks & Overhaul",
-            description: "Inspection and restoration of dampers, link rods, and bushings.",
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Argon TIG Welding",
-            description: "Precision welding for aluminium alloys, silencers, and mounts.",
+            name: "Argon Shielded TIG Welding & Fabrication",
+            description: "High-integrity welding for aluminium alloys, silencers, brackets, and structural mounts.",
           },
         },
       ],

@@ -71,7 +71,7 @@ export default function Navbar() {
           </Link>
 
           {/* Center Navigation Links matching finalback.png */}
-          <nav className="hidden lg:flex items-center gap-10 text-xs tracking-[0.18em] font-sans font-medium uppercase text-slate-300">
+          <nav className="hidden lg:flex items-center gap-8 text-xs tracking-[0.18em] font-sans font-medium uppercase text-slate-300">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -85,6 +85,12 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/portal"
+              className="px-3.5 py-1.5 bg-[#7B0818] hover:bg-[#600512] active:bg-[#4E040E] border border-[#9A0D22] text-white transition-colors flex items-center gap-1 font-sans text-xs font-bold uppercase tracking-wider rounded-none"
+            >
+              <span>[WORKSHOP]</span>
+            </Link>
           </nav>
 
           {/* Right Action: Hamburger Menu Icon */}
@@ -114,9 +120,9 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-2xl flex flex-col justify-between p-8 animate-fadeIn">
           <div className="flex items-center justify-between border-b border-white/10 pb-6">
             <div className="flex items-center gap-2.5">
-              <div className="flex items-center space-x-0.5 text-red-600 font-extrabold text-xl">
-                <span className="inline-block transform -skew-x-[24deg] w-1.5 h-6 bg-red-600" />
-                <span className="inline-block transform -skew-x-[24deg] w-1.5 h-6 bg-red-600" />
+              <div className="flex items-center space-x-0.5 text-[#7B0818] font-extrabold text-xl">
+                <span className="inline-block transform -skew-x-[24deg] w-1.5 h-6 bg-[#7B0818]" />
+                <span className="inline-block transform -skew-x-[24deg] w-1.5 h-6 bg-[#7B0818]" />
               </div>
               <div className="flex flex-col text-left">
                 <span className="text-white font-extrabold text-base tracking-[0.2em]">INDIAN</span>
@@ -132,7 +138,7 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="flex flex-col gap-6 text-xl sm:text-2xl font-sans tracking-[0.1em] uppercase">
+          <div className="flex flex-col gap-4 text-lg sm:text-xl font-sans tracking-[0.1em] uppercase">
             {navLinks.map((link) => (
               <a
                 key={link.label}
@@ -141,18 +147,30 @@ export default function Navbar() {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="text-slate-300 hover:text-white flex items-center justify-between py-2 border-b border-white/5"
+                className="text-slate-300 hover:text-white flex items-center justify-between py-1.5 border-b border-white/5"
               >
                 <span>{link.label}</span>
-                <ArrowRight className="w-5 h-5 text-red-500" />
+                <ArrowRight className="w-4 h-4 text-red-500" />
               </a>
             ))}
+
+            {/* Unified Workshop in Mobile Menu */}
+            <div className="pt-2">
+              <Link
+                href="/portal"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-3 px-4 rounded-none bg-[#4A0812] hover:bg-[#600512] border-2 border-[#7B0818] text-white font-sans text-xs font-bold text-center flex items-center justify-center gap-1 uppercase tracking-wider"
+              >
+                <span>[WORKSHOP]</span>
+              </Link>
+            </div>
+
             <a
               href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20book%20a%20service."
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="text-white font-mono text-sm py-3 px-4 bg-red-600 hover:bg-red-700 text-center font-bold tracking-wider uppercase flex items-center justify-center gap-2"
+              className="text-white font-mono text-xs py-3 px-4 bg-red-600 hover:bg-red-700 text-center font-bold tracking-wider uppercase flex items-center justify-center gap-2 mt-2"
             >
               <span>Book via WhatsApp</span>
               <ArrowRight className="w-4 h-4" />

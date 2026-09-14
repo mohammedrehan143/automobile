@@ -25,7 +25,7 @@ export default function Footer() {
             </div>
 
             <p className="text-xs text-slate-400 leading-relaxed max-w-sm">
-              Advanced laser computerized wheel alignment, hydraulic fork and rim truing, suspension diagnostics, and precision mechanical repair for cars and motorcycles in Kammanahalli, Bengaluru.
+              Advanced computerized laser wheel alignment and precision argon shielded TIG welding &amp; fabrication for cars and motorcycles in Kammanahalli, Bengaluru.
             </p>
 
             <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 font-medium">
@@ -61,6 +61,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="/portal" className="text-red-400 hover:text-red-300 transition-colors font-bold uppercase tracking-wider">
+                  [Workshop]
+                </a>
+              </li>
+              <li>
                 <a href="/#location" className="hover:text-white transition-colors text-slate-400">
                   Contact &amp; Location
                 </a>
@@ -74,12 +79,12 @@ export default function Footer() {
               Specialized Care
             </div>
             <ul className="space-y-2 text-slate-400">
-              <li>• Computerized 3D Car Alignment</li>
-              <li>• Bike Handle &amp; Fork Straightening</li>
-              <li>• Hydraulic Alloy Rim Truing</li>
-              <li>• Argon TIG Fabrication &amp; Welding</li>
-              <li>• Suspension Dampers &amp; Bushings</li>
-              <li>• Comprehensive Periodic Service</li>
+              <li>• Computerized 3D Car Wheel Alignment</li>
+              <li>• Two-Wheeler Precision Laser Alignment</li>
+              <li>• Argon Shielded TIG Arc Welding</li>
+              <li>• Aluminium &amp; Alloy TIG Fusion</li>
+              <li>• Custom Silencer &amp; Subframe Mounts</li>
+              <li>• Digital Camber &amp; Caster Calibration</li>
             </ul>
           </div>
 
@@ -115,7 +120,14 @@ export default function Footer() {
             © {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
           </div>
 
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
+            <a
+              href="/portal"
+              className="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 font-bold uppercase"
+            >
+              <span>[Workshop Access]</span>
+            </a>
+
             <a
               href={BUSINESS_INFO.directionsUrl}
               target="_blank"

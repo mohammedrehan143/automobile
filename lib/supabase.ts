@@ -19,50 +19,7 @@ export const supabase: SupabaseClient | null = isSupabaseConfigured
 // IN-MEMORY / LOCAL STORAGE PERSISTENCE ENGINE (Seamless dev/offline fallback)
 // ============================================================================
 
-const SEED_BOOKINGS: Booking[] = [
-  {
-    id: "seed-bk-101",
-    customerName: "Sanjay Verma",
-    customerPhone: "9845012345",
-    vehicleType: "car",
-    vehicleNumber: "KA 03 MZ 4421",
-    serviceId: "wheel-alignment",
-    serviceName: "WHEEL ALIGNMENT",
-    bookingDate: new Date().toISOString().split("T")[0],
-    bookingTime: "11:00 AM",
-    status: "confirmed",
-    notes: "Slight left pulling at 80 km/h on highway.",
-    createdAt: new Date(Date.now() - 3600000 * 5).toISOString(),
-  },
-  {
-    id: "seed-bk-102",
-    customerName: "Rahul Shetty",
-    customerPhone: "9900128841",
-    vehicleType: "bike",
-    vehicleNumber: "KA 04 ET 9102",
-    serviceId: "bike-service",
-    serviceName: "BIKE SERVICE & HANDLE ALIGNMENT",
-    bookingDate: new Date().toISOString().split("T")[0],
-    bookingTime: "02:30 PM",
-    status: "pending",
-    notes: "Front handle T-stem check after minor slip.",
-    createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
-  },
-  {
-    id: "seed-bk-103",
-    customerName: "Farhan Ahmed",
-    customerPhone: "9886033412",
-    vehicleType: "car",
-    vehicleNumber: "KA 51 MD 2033",
-    serviceId: "alloy-wheel-repair",
-    serviceName: "ALLOY WHEEL REPAIR & TRUING",
-    bookingDate: new Date(Date.now() + 86400000).toISOString().split("T")[0],
-    bookingTime: "10:30 AM",
-    status: "confirmed",
-    notes: "Front left rim minor dent, check air leak.",
-    createdAt: new Date(Date.now() - 3600000 * 1).toISOString(),
-  },
-];
+const SEED_BOOKINGS: Booking[] = [];
 
 declare global {
   // eslint-disable-next-line no-var

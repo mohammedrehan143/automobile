@@ -21,16 +21,16 @@ export default function VehicleSelector({
         desc: "Precision calibration of Camber, Caster, and Toe angles to eliminate tyre wear and steering drift.",
       },
       {
-        title: "Suspension & Steering Rack Diagnostics",
-        desc: "Detection of worn ball joints, control arm bushes, shock absorbers, and tie-rod play.",
+        title: "Argon Shielded TIG Welding",
+        desc: "High-integrity TIG arc welding for aluminium alloy rims, exhaust pipes, and custom brackets.",
       },
       {
-        title: "Hydraulic Alloy Rim Straightening",
-        desc: "Restoration of dented, bent, or cracked alloy rims with radial truing and TIG repair.",
+        title: "Digital Camber & Caster Spec Sheets",
+        desc: "Transparent before-and-after laser telemetry reports with exact factory alignment tolerances.",
       },
       {
-        title: "40-Point Periodic Mechanical Service",
-        desc: "Synthetic engine oil, fluid flushes, brake pad degreasing, and computerized health check.",
+        title: "Precision Chassis Tracking",
+        desc: "Laser thrust angle calibration to ensure four-wheelers track straight without steering pull.",
       },
     ],
     ctaText: "BOOK CAR APPOINTMENT",
@@ -38,24 +38,24 @@ export default function VehicleSelector({
 
   const bikeDetails = {
     title: "TWO-WHEELER SERVICES",
-    subtitle: "Specialist Handling, Fork & Handle Alignment for All Motorcycles",
+    subtitle: "Precision Tracking & TIG Fabrication for Motorcycles & Scooters",
     image: "/bike1.avif",
     features: [
       {
-        title: "Motorcycle Handle & T-Stem Alignment",
-        desc: "Hydraulic straightening of bent handlebars and triple-tree clamps after impacts or slips.",
+        title: "Two-Wheeler Laser Wheel Alignment",
+        desc: "Computerized wheel tracking and alignment geometry to restore straight-line road stability.",
       },
       {
-        title: "Front Fork Straightening & Oil Seals",
-        desc: "Restoration of fork tubes to exact factory parallel alignment with genuine oil seal replacement.",
+        title: "Argon TIG Arc Welding & Fabrication",
+        desc: "Specialized TIG welding for broken silencer mounts, footrest brackets, and motorcycle subframes.",
       },
       {
-        title: "Spoke & Alloy Rim Truing",
-        desc: "Removing high-speed wobble through precision dial-gauge wheel truing and dynamic balancing.",
+        title: "Aluminium & Steel Joint Fusion",
+        desc: "Penetration-tested TIG weld beads restoring structural integrity without weakening base metals.",
       },
       {
-        title: "Chain Sprocket & Precision Tune",
-        desc: "Laser chain alignment, carburettor/injector cleaning, brake calibration, and lubrication.",
+        title: "Chassis Centerline Tracking",
+        desc: "Ensuring front and rear motorcycle wheels are aligned to the exact identical center track.",
       },
     ],
     ctaText: "BOOK BIKE APPOINTMENT",

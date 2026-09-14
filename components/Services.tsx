@@ -46,7 +46,7 @@ export default function Services({
             </h2>
           </div>
           <p className="text-slate-400 text-xs sm:text-sm max-w-md font-normal leading-relaxed">
-            Laser computerized alignment, hydraulic chassis truing, and argon TIG welding executed to strict engineering tolerances.
+            Laser computerized wheel alignment and precision argon TIG welding executed to strict engineering tolerances.
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export default function Services({
                     TECHNICAL PROTOCOL
                   </span>
                   <span className="font-mono text-xs text-slate-400">
-                    INDEX {activeService.number} / 07
+                    INDEX {activeService.number} / 02
                   </span>
                 </div>
 

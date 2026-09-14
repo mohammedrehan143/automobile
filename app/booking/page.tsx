@@ -9,7 +9,7 @@ import { BUSINESS_INFO } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: `Book Service Appointment | ${BUSINESS_INFO.name}`,
-  description: `Book computerized wheel alignment, fork truing, alloy rim repair, or vehicle service in Kammanahalli, Bengaluru. Direct WhatsApp booking and immediate confirmation.`,
+  description: `Book computerized laser wheel alignment and precision argon TIG welding in Kammanahalli, Bengaluru. Direct WhatsApp booking and immediate confirmation.`,
 };
 
 export default function BookingPage() {

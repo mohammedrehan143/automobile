@@ -34,11 +34,11 @@ const EDITORIAL_GALLERY: GalleryPhoto[] = [
   },
   {
     id: "gal-02",
-    title: "Motorcycle Fork & Handle Straightening Jig",
+    title: "Motorcycle Laser Tracking & Steering Geometry",
     category: "Two-Wheeler Geometry",
-    tag: "HYDRAULIC ALIGNMENT",
+    tag: "LASER ALIGNMENT",
     caption:
-      "Front fork tubes and triple-tree steering stems undergo hydraulic truing to eliminate high-speed handle wobble and restore parallel tracking after road impacts.",
+      "Precision computerized geometry calibration for two-wheelers to eliminate steering pull, ensure straight-line tracking, and optimize high-speed road stability.",
     aspectRatio: "4 / 5",
     gridSpan: "col-span-12 lg:col-span-5 lg:col-start-2",
     marginTop: "lg:-mt-24",
@@ -47,11 +47,11 @@ const EDITORIAL_GALLERY: GalleryPhoto[] = [
   },
   {
     id: "gal-03",
-    title: "Hydraulic Alloy Rim Truing & Dynamic Balancing",
-    category: "Rim Restoration",
-    tag: "ZERO-RUNOUT SPEC",
+    title: "Precision Argon Shielded TIG Welding",
+    category: "Precision Fabrication",
+    tag: "ARGON TIG ARC",
     caption:
-      "Radial and lateral wheel runout is corrected on hydraulic truing stands before micro-gram dynamic wheel balancing restores seamless highway stability.",
+      "High-integrity tungsten inert gas welding for aluminum alloys, stainless exhaust pipes, silencer brackets, engine cases, and reinforced motorcycle subframes.",
     aspectRatio: "16 / 11",
     gridSpan: "col-span-12 lg:col-span-6 lg:col-start-7",
     marginTop: "lg:mt-12",
@@ -60,29 +60,16 @@ const EDITORIAL_GALLERY: GalleryPhoto[] = [
   },
   {
     id: "gal-04",
-    title: "Precision Argon Shielded TIG Welding",
-    category: "Precision Fabrication",
-    tag: "ARGON TIG ARC",
+    title: "High-Strength Aluminium & Steel TIG Fusion",
+    category: "Welding & Fabrication",
+    tag: "TIG FUSION BEAD",
     caption:
-      "High-integrity tungsten inert gas welding for aluminum alloy wheels, silencer brackets, engine cases, and reinforced motorcycle subframes.",
+      "Argon-shielded arc welding delivering clean, penetration-tested weld beads on structural lugs, exhaust headers, brackets, and custom automotive mounts.",
     aspectRatio: "1 / 1",
     gridSpan: "col-span-12 lg:col-span-5 lg:col-start-2",
     marginTop: "lg:-mt-16",
     height: "h-[380px] sm:h-[480px]",
     imageUrl: "/car1.avif",
-  },
-  {
-    id: "gal-05",
-    title: "Chassis Suspension & Damper Diagnostics",
-    category: "Chassis Dynamics",
-    tag: "SUSPENSION AUDIT",
-    caption:
-      "Rigorous tactile testing of control arm bushings, strut mountings, stabilizer link rods, and motorcycle mono-shock damping characteristics.",
-    aspectRatio: "16 / 9",
-    gridSpan: "col-span-12 lg:col-span-8 lg:col-start-3",
-    marginTop: "lg:mt-12",
-    height: "h-[380px] sm:h-[520px]",
-    imageUrl: "/car3.avif",
   },
 ];
 
@@ -322,7 +309,7 @@ export default function Gallery() {
         </h2>
 
         <p className="mt-4 sm:mt-6 max-w-2xl mx-auto text-xs sm:text-sm text-slate-400 font-sans leading-relaxed tracking-wide">
-          Every vehicle is measured against strict tolerance benchmarks. Glimpse into our computerized laser alignment racks, hydraulic wheel truing jigs, and specialized motorcycle service bays in Kammanahalli.
+          Every vehicle is measured against strict tolerance benchmarks. Glimpse into our computerized laser alignment racks, precision argon TIG welding equipment, and calibration bays in Kammanahalli.
         </p>
       </div>
 

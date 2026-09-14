@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:qa": "node scripts/qa_deep_test_suite.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.116.0",

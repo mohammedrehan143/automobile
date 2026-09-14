@@ -11,7 +11,7 @@ import { BUSINESS_INFO } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: `Precision Automotive Services | ${BUSINESS_INFO.name}`,
-  description: `Explore laser wheel alignment, motorcycle fork & handle straightening, alloy rim repair, argon TIG welding, and mechanical maintenance in Kammanahalli, Bengaluru.`,
+  description: `Explore laser computerized wheel alignment and precision argon TIG welding & fabrication in Kammanahalli, Bengaluru.`,
 };
 
 export default function ServicesPage() {

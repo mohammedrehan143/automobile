@@ -20,17 +20,32 @@ html {
   color: #F8FAFC;
   scroll-behavior: auto; /* Handled by Lenis for smooth momentum */
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+  max-width: 100vw;
+  touch-action: manipulation;
 }
 
 body {
   background-color: #08090B;
   color: #F8FAFC;
   overflow-x: hidden;
+  max-width: 100vw;
   min-height: 100vh;
   position: relative;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+}
+
+/* Prevent mobile iOS Safari & Chrome from auto-zooming on input/select focus */
+@media screen and (max-width: 768px) {
+  input, select, textarea, button {
+    touch-action: manipulation;
+  }
+  input, select, textarea {
+    font-size: 16px !important;
+  }
 }
 
 /* Lenis smooth scrolling core styles */
@@ -118,5 +133,16 @@ html.lenis, html.lenis body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Clean Workshop Floor Receipts & Job Cards Print Styles */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  header, footer, nav, button {
+    display: none !important;
   }
 }
