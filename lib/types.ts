@@ -7,7 +7,7 @@ export interface ServiceItem {
   slug: string;
   number: string;
   title: string;
-  category: "alignment" | "suspension" | "repair" | "welding" | "maintenance";
+  category: "alignment" | "suspension" | "repair" | "welding" | "maintenance" | "tyre" | "alloy";
   vehicleType: "car" | "bike" | "both";
   shortDesc: string;
   fullDesc: string;
@@ -71,3 +71,15 @@ export interface WorkshopMetrics {
   yearsExperience: number;
   alignedVehicles: string;
 }
+
+export interface FounderInfo {
+  name: string;
+  role: string;
+  yearsExperience: string;
+  story: string;
+  quote: string;
+  photo?: string;
+  milestones: { label: string; val: string }[];
+  guarantees: string[];
+}
+

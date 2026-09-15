@@ -14,7 +14,7 @@ export default function VehicleSelector({
   const carDetails = {
     title: "FOUR-WHEELER SERVICES",
     subtitle: "Precision Engineering for Sedans, SUVs, and Hatchbacks",
-    image: "/car1.avif",
+    image: "/workshop-bay.png",
     features: [
       {
         title: "3D Computerized Laser Alignment",
@@ -39,7 +39,7 @@ export default function VehicleSelector({
   const bikeDetails = {
     title: "TWO-WHEELER SERVICES",
     subtitle: "Precision Tracking & TIG Fabrication for Motorcycles & Scooters",
-    image: "/bike1.avif",
+    image: "/wheel-truing.jpg",
     features: [
       {
         title: "Two-Wheeler Laser Wheel Alignment",

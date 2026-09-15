@@ -1,10 +1,19 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ArrowRight, MapPin, Phone } from "lucide-react";
 import { BUSINESS_INFO } from "@/lib/data";
+
+const HERO_VIDEOS = [
+  "/vid1.mp4",
+  "/vid2.mp4",
+  "/vid3.mp4",
+  "/vid5.mp4",
+  "/vid6.mp4",
+  "/vid7.mp4",
+];
 
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,6 +25,49 @@ export default function Hero() {
   const sideListRef = useRef<HTMLDivElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
   const bottomBarRef = useRef<HTMLDivElement>(null);
+
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+  // Video playback coordination
+  useEffect(() => {
+    const activeVid = videoRefs.current[currentVideoIndex];
+    if (activeVid) {
+      activeVid.currentTime = 0;
+      const playPromise = activeVid.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Browser autoplay restrictions handled gracefully
+        });
+      }
+    }
+
+    // Pause inactive clips after crossfade to save battery & CPU
+    const timer = setTimeout(() => {
+      videoRefs.current.forEach((vid, idx) => {
+        if (idx !== currentVideoIndex && vid) {
+          vid.pause();
+        }
+      });
+    }, 1100);
+
+    return () => clearTimeout(timer);
+  }, [currentVideoIndex]);
+
+  // Advance when current video finishes playing
+  const handleVideoEnded = (index: number) => {
+    if (index === currentVideoIndex) {
+      setCurrentVideoIndex((prev) => (prev + 1) % HERO_VIDEOS.length);
+    }
+  };
+
+  // Fallback safety timer if video hangs or doesn't fire onEnded
+  useEffect(() => {
+    const safetyTimer = setTimeout(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % HERO_VIDEOS.length);
+    }, 9000);
+    return () => clearTimeout(safetyTimer);
+  }, [currentVideoIndex]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -94,12 +146,12 @@ export default function Hero() {
 
   const servicesList = [
     { label: "ALIGNMENT", href: "services" },
-    { label: "SUSPENSION", href: "services" },
-    { label: "REPAIRS", href: "services" },
+    { label: "TYRE CHANGE", href: "services" },
+    { label: "CUSTOM ALLOYS", href: "services" },
     { label: "ALLOY WORK", href: "services" },
     { label: "TIG WELDING", href: "services" },
-    { label: "CAR SERVICES", href: "services" },
-    { label: "BIKE SERVICES", href: "services" },
+    { label: "SUSPENSION", href: "services" },
+    { label: "REPAIRS", href: "services" },
   ];
 
   return (
@@ -107,35 +159,61 @@ export default function Hero() {
       ref={containerRef}
       className="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-transparent text-white pt-24 select-none"
     >
-      {/* 1. Cinematic Background Image (mob.png on mobile, back.png on desktop) */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        {/* Mobile Background */}
-        <div className="sm:hidden absolute inset-0">
-          <Image
-            src="/mob.png"
-            alt="Indian Two and Four Wheeler Alignment Workshop Bay"
-            fill
-            priority
-            quality={95}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
+      {/* 1. Cinematic Background Video Montage / Edit */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Fallback Static Poster (Desktop + Mobile) */}
+        <div className="absolute inset-0 z-0">
+          <div className="sm:hidden absolute inset-0">
+            <Image
+              src="/workshop-bay.png"
+              alt="Indian Two and Four Wheeler Alignment Workshop Bay"
+              fill
+              priority
+              quality={90}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
+          <div className="hidden sm:block absolute inset-0">
+            <Image
+              src="/workshop-bay.png"
+              alt="Indian Two and Four Wheeler Alignment and Repair Workshop Bay"
+              fill
+              priority
+              quality={90}
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+          </div>
         </div>
-        {/* Desktop Background */}
-        <div className="hidden sm:block absolute inset-0">
-          <Image
-            src="/back.png"
-            alt="Indian Two and Four Wheeler Alignment and Repair Workshop Bay"
-            fill
-            priority
-            quality={95}
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-        </div>
-        {/* Soft Vignette Gradients for Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+
+        {/* 6 Seamless Cross-fading Video Clips */}
+        {HERO_VIDEOS.map((src, index) => {
+          const isActive = currentVideoIndex === index;
+          const isNext = (currentVideoIndex + 1) % HERO_VIDEOS.length === index;
+          return (
+            <video
+              key={src}
+              ref={(el) => {
+                videoRefs.current[index] = el;
+              }}
+              src={src}
+              muted
+              playsInline
+              preload={index === 0 || isNext ? "auto" : "metadata"}
+              onEnded={() => handleVideoEnded(index)}
+              className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out ${
+                isActive ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+            />
+          );
+        })}
+
+        {/* Cinematic Film Fade - balanced contrast, smooth edge fade and lens vignette */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/75 via-black/35 to-black/15 pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/75 via-transparent to-black/25 pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-b from-black/45 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(0,0,0,0.35)_100%)] pointer-events-none" />
       </div>
 
       {/* 2. Main Hero Center Stage */}
@@ -145,7 +223,7 @@ export default function Hero() {
           <div className="lg:col-span-8 flex flex-col space-y-6">
             {/* Eyebrow */}
             <div ref={eyebrowRef} className="opacity-0">
-              <span className="font-mono text-xs tracking-[0.26em] text-white/75 uppercase font-medium">
+              <span className="font-mono text-xs tracking-[0.26em] text-white/90 uppercase font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
                 PRECISION AUTOMOTIVE SERVICE
               </span>
             </div>
@@ -153,15 +231,15 @@ export default function Hero() {
             {/* Headline matching exact font contrast: Bold PRECISION + Light THAT KEEPS YOU MOVING. */}
             <h1
               ref={headlineRef}
-              className="opacity-0 text-5xl sm:text-7xl lg:text-[80px] xl:text-[86px] tracking-tight leading-[0.93] uppercase select-text"
+              className="opacity-0 text-5xl sm:text-7xl lg:text-[80px] xl:text-[86px] tracking-tight leading-[0.93] uppercase select-text drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]"
             >
               <span className="block font-black text-white drop-shadow-md">
                 PRECISION
               </span>
-              <span className="block font-extralight text-white/95">
+              <span className="block font-extralight text-white">
                 THAT KEEPS
               </span>
-              <span className="block font-extralight text-white/95">
+              <span className="block font-extralight text-white">
                 YOU MOVING.
               </span>
             </h1>
@@ -169,7 +247,7 @@ export default function Hero() {
             {/* Supporting Copy */}
             <p
               ref={subtextRef}
-              className="opacity-0 text-slate-300 text-sm sm:text-base font-normal max-w-xl leading-relaxed pt-1"
+              className="opacity-0 text-white/90 text-sm sm:text-base font-normal max-w-xl leading-relaxed pt-1 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]"
             >
               Expert alignment, repairs and automotive care for cars and bikes in Bengaluru.
             </p>
@@ -215,14 +293,14 @@ export default function Hero() {
             ref={sideListRef}
             className="opacity-0 lg:col-span-4 hidden lg:flex flex-col items-end justify-start space-y-4 pr-4"
           >
-            <div className="flex flex-col space-y-3.5 text-right font-mono text-[11px] tracking-[0.22em] text-white/60">
+            <div className="flex flex-col space-y-3.5 text-right font-mono text-[11px] tracking-[0.22em] text-white/85 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)]">
               {servicesList.map((s) => (
                 <button
                   key={s.label}
                   onClick={() => scrollToSection(s.href)}
-                  className="hover:text-white transition-colors flex items-center justify-end gap-2 group text-right"
+                  className="hover:text-white transition-colors flex items-center justify-end gap-2 group text-right cursor-pointer"
                 >
-                  <span className="text-white/30 group-hover:text-red-500 transition-colors">—</span>
+                  <span className="text-white/40 group-hover:text-red-500 transition-colors">—</span>
                   <span className="group-hover:translate-x-[-2px] transition-transform">{s.label}</span>
                 </button>
               ))}
@@ -233,19 +311,19 @@ export default function Hero() {
         {/* Floating Bottom-Right Facility & Contact Info matching finalback.png */}
         <div
           ref={contactInfoRef}
-          className="opacity-0 w-full flex flex-col sm:flex-row items-start sm:items-end justify-end gap-8 pt-8 sm:pt-4 text-xs font-sans text-right"
+          className="opacity-0 w-full flex flex-col sm:flex-row items-start sm:items-end justify-end gap-4 pt-8 sm:pt-4 text-xs font-sans text-right"
         >
           {/* Location Badge */}
           <a
             href={BUSINESS_INFO.directionsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 text-left group hover:opacity-100 transition-opacity"
+            className="flex items-center gap-3 text-left group hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm px-3 py-2 rounded-lg border border-white/10 shadow-md"
           >
             <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center shrink-0 group-hover:border-white text-white">
               <MapPin className="w-4 h-4" />
             </div>
-            <div className="leading-snug text-slate-300 text-[11px] font-sans">
+            <div className="leading-snug text-slate-200 text-[11px] font-sans">
               <div className="text-white font-medium">60/1, Nehru Road, Opp. NKGSB Bank,</div>
               <div>St Thomas Town Extension, Kammanahalli,</div>
               <div>Bengaluru, Karnataka 560084</div>
@@ -255,7 +333,7 @@ export default function Hero() {
           {/* Phone Badge */}
           <a
             href={`tel:${BUSINESS_INFO.phoneRaw}`}
-            className="flex items-center gap-3 text-left group hover:opacity-100 transition-opacity"
+            className="flex items-center gap-3 text-left group hover:opacity-100 transition-opacity bg-black/40 backdrop-blur-sm px-3.5 py-2 rounded-lg border border-white/10 shadow-md"
           >
             <div className="w-8 h-8 rounded-full border border-white/30 flex items-center justify-center shrink-0 group-hover:border-white text-white">
               <Phone className="w-4 h-4" />
@@ -264,7 +342,7 @@ export default function Hero() {
               <div className="text-white font-mono font-bold text-sm">
                 {BUSINESS_INFO.phoneDisplay}
               </div>
-              <div className="text-[10px] text-slate-400 uppercase tracking-wider font-mono mt-1">
+              <div className="text-[10px] text-slate-300 uppercase tracking-wider font-mono mt-1">
                 Call Us
               </div>
             </div>

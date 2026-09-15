@@ -184,6 +184,22 @@ export const BIKE_BRANDS: BrandSuggestion[] = [
 
 export const PRESET_SERVICES: ServicePreset[] = [
   {
+    id: "tyre-change",
+    label: "Tyre Change & Bead Seal",
+    category: "tyre",
+    vehicleType: "both",
+    defaultPrice: 350,
+    popular: true,
+  },
+  {
+    id: "custom-alloy-wheels",
+    label: "Custom Alloy Wheels Installation",
+    category: "rim",
+    vehicleType: "both",
+    defaultPrice: 1500,
+    popular: true,
+  },
+  {
     id: "tig-welding",
     label: "TIG Welding & Fabrication",
     category: "welding",
@@ -197,14 +213,6 @@ export const PRESET_SERVICES: ServicePreset[] = [
     category: "rim",
     vehicleType: "both",
     defaultPrice: 750,
-    popular: true,
-  },
-  {
-    id: "tyre-change",
-    label: "Tyre Change & Bead Seal",
-    category: "tyre",
-    vehicleType: "both",
-    defaultPrice: 350,
     popular: true,
   },
   {

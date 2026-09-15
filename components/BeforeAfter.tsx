@@ -80,7 +80,7 @@ export default function BeforeAfter() {
             {/* AFTER Image (Full width underneath) */}
             <div className="absolute inset-0 w-full h-full">
               <Image
-                src="/car2.avif"
+                src="/alloy-straightening.jpg"
                 alt="Alloy wheel after precision hydraulic truing and dynamic balancing"
                 fill
                 className="object-cover object-center"
@@ -101,7 +101,7 @@ export default function BeforeAfter() {
             >
               <div className="relative w-full h-full min-w-[320px] sm:min-w-[600px] md:min-w-[900px]">
                 <Image
-                  src="/car3.avif"
+                  src="/wheel-truing.jpg"
                   alt="Alloy wheel before repair showing impact dent and runout variance"
                   fill
                   className="object-cover object-center filter grayscale contrast-125"

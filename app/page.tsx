@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import About from "@/components/About";
+import Founder from "@/components/Founder";
 import Services from "@/components/Services";
 import Gallery from "@/components/Gallery";
 import Reviews from "@/components/Reviews";
@@ -41,6 +42,9 @@ export default function Home() {
 
             {/* About Us Section */}
             <About />
+
+            {/* Founder Heritage & 22 Years Leadership Section */}
+            <Founder />
 
             {/* Capabilities & Services Grid */}
             <Services />

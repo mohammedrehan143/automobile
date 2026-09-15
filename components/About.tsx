@@ -17,35 +17,179 @@ export default function About() {
       <div className="max-w-[1520px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Workshop Engineering Imagery using public /car1.avif */}
+          {/* Left Column: Workshop Team & Engineering Imagery */}
           <div className="lg:col-span-6 relative">
-            <div className="relative w-full aspect-[4/3] rounded-none overflow-hidden border border-white/15 shadow-2xl group">
+            <div className="relative w-full aspect-[3/4] rounded-none overflow-hidden border border-white/20 shadow-2xl group bg-[#0A0B0E]">
               <Image
-                src="/car1.avif"
-                alt="Precision tools and workshop bay in Kammanahalli Bengaluru"
+                src="/team.png"
+                alt="Indian Alignment Senior Engineer and Mechanical Assistant at Kammanahalli Workshop"
                 fill
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                priority
+                quality={95}
+                className="object-cover object-top brightness-110 contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.01]"
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
 
-              {/* Verified Experience Badge - Sharp Edged */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-5 rounded-none bg-black/85 backdrop-blur-md border border-white/20 flex items-center justify-between">
-                <div>
-                  <div className="text-2xl sm:text-3xl font-mono font-black text-white">
-                    {BUSINESS_INFO.yearsActive}
-                  </div>
-                  <div className="text-[10px] sm:text-[11px] font-mono text-slate-300 uppercase tracking-wider">
-                    Years of Engineering Mastery
+              {/* High-Precision SVG Leader Lines & Directional Arrowheads */}
+              <svg
+                className="absolute inset-0 w-full h-full pointer-events-none z-20"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                <defs>
+                  {/* Glowing Drop Shadows */}
+                  <filter id="glow-se" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="0.7" floodColor="#EF4444" floodOpacity="0.85" />
+                  </filter>
+                  <filter id="glow-ma" x="-20%" y="-20%" width="140%" height="140%">
+                    <feDropShadow dx="0" dy="0" stdDeviation="0.7" floodColor="#06B6D4" floodOpacity="0.85" />
+                  </filter>
+
+                  {/* Gradient Strokes */}
+                  <linearGradient id="se-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#EF4444" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#EF4444" stopOpacity="1" />
+                  </linearGradient>
+                  <linearGradient id="ma-grad" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#06B6D4" stopOpacity="1" />
+                  </linearGradient>
+                </defs>
+
+                {/* Senior Engineer (Left): Leader Line & Arrowhead */}
+                <g filter="url(#glow-se)">
+                  <line
+                    x1="26"
+                    y1="46"
+                    x2="37.3"
+                    y2="57.5"
+                    stroke="url(#se-grad)"
+                    strokeWidth="0.5"
+                    strokeDasharray="1.2 0.8"
+                  />
+                  <line
+                    x1="26"
+                    y1="46"
+                    x2="37.3"
+                    y2="57.5"
+                    stroke="#EF4444"
+                    strokeWidth="0.3"
+                  />
+                  {/* Directional Chevron pointing down-right at Senior Engineer */}
+                  <polygon
+                    points="37.3,58.5 35.5,56.2 37.8,56.8"
+                    fill="#EF4444"
+                    stroke="#FFFFFF"
+                    strokeWidth="0.15"
+                  />
+                </g>
+
+                {/* Mechanical Assistant (Right): Leader Line & Arrowhead */}
+                <g filter="url(#glow-ma)">
+                  <line
+                    x1="71"
+                    y1="41"
+                    x2="49.4"
+                    y2="57.2"
+                    stroke="url(#ma-grad)"
+                    strokeWidth="0.5"
+                    strokeDasharray="1.2 0.8"
+                  />
+                  <line
+                    x1="71"
+                    y1="41"
+                    x2="49.4"
+                    y2="57.2"
+                    stroke="#06B6D4"
+                    strokeWidth="0.3"
+                  />
+                  {/* Directional Chevron pointing down-left at Mechanical Assistant */}
+                  <polygon
+                    points="49.4,58.0 51.2,55.8 48.9,56.3"
+                    fill="#06B6D4"
+                    stroke="#FFFFFF"
+                    strokeWidth="0.15"
+                  />
+                </g>
+              </svg>
+
+              {/* Exact Target Reticle: Senior Engineer (Left Person) - Solid, No Pulsing */}
+              <div
+                className="absolute top-[58.5%] left-[37.3%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30 flex items-center justify-center"
+                title="Senior Engineer (Left)"
+              >
+                <div className="relative w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-red-500 bg-black/80 backdrop-blur-[2px] flex items-center justify-center shadow-[0_0_10px_rgba(239,68,68,0.85)]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_4px_#ef4444]" />
+                </div>
+              </div>
+
+              {/* Exact Target Reticle: Mechanical Assistant (Right Person) - Solid, No Pulsing */}
+              <div
+                className="absolute top-[58.0%] left-[49.4%] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-30 flex items-center justify-center"
+                title="Mechanical Assistant (Right)"
+              >
+                <div className="relative w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-cyan-400 bg-black/80 backdrop-blur-[2px] flex items-center justify-center shadow-[0_0_10px_rgba(6,182,212,0.85)]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-white shadow-[0_0_4px_#22d3ee]" />
+                </div>
+              </div>
+
+              {/* Role Box: Left Person -> Senior Engineer */}
+              <div
+                className="absolute top-[36%] left-[3%] sm:left-[4%] z-30 pointer-events-none"
+              >
+                <div className="relative px-3 py-2 rounded-[3px] bg-black/90 backdrop-blur-md border border-red-500/50 shadow-[0_8px_24px_rgba(0,0,0,0.85),0_0_15px_rgba(239,68,68,0.2)]">
+                  {/* Top glowing accent bar */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-red-500 via-rose-400 to-amber-500" />
+                  
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                    <span className="text-[11px] sm:text-[13px] font-mono font-black tracking-wider uppercase text-white">
+                      SENIOR ENGINEER
+                    </span>
+                    <span className="text-[8px] font-mono text-slate-400 bg-white/10 px-1 py-0.5 rounded-[2px] border border-white/15">
+                      LEFT
+                    </span>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="text-2xl sm:text-3xl font-mono font-black text-white">
-                    {BUSINESS_INFO.rating}★
+              </div>
+
+              {/* Role Box: Right Person -> Mechanical Assistant */}
+              <div
+                className="absolute top-[30%] right-[3%] sm:right-[4%] z-30 pointer-events-none"
+              >
+                <div className="relative px-3 py-2 rounded-[3px] bg-black/90 backdrop-blur-md border border-cyan-500/50 shadow-[0_8px_24px_rgba(0,0,0,0.85),0_0_15px_rgba(6,182,212,0.2)]">
+                  {/* Top glowing accent bar */}
+                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 via-sky-400 to-blue-500" />
+                  
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_6px_#22d3ee]" />
+                    <span className="text-[11px] sm:text-[13px] font-mono font-black tracking-wider uppercase text-white">
+                      MECHANICAL ASSISTANT
+                    </span>
+                    <span className="text-[8px] font-mono text-slate-400 bg-white/10 px-1 py-0.5 rounded-[2px] border border-white/15">
+                      RIGHT
+                    </span>
                   </div>
-                  <div className="text-[10px] sm:text-[11px] font-mono text-slate-300 uppercase tracking-wider">
-                    Google Customer Rating
-                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Verified Experience & Rating Strip (Cleanly Below Image) */}
+            <div className="mt-3 p-4 bg-[#111317] border border-white/15 flex items-center justify-between shadow-md">
+              <div>
+                <div className="text-2xl sm:text-3xl font-mono font-black text-white">
+                  {BUSINESS_INFO.yearsActive}
+                </div>
+                <div className="text-[10px] sm:text-[11px] font-mono text-slate-300 uppercase tracking-wider">
+                  Years of Engineering Mastery
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl sm:text-3xl font-mono font-black text-white">
+                  {BUSINESS_INFO.rating}★
+                </div>
+                <div className="text-[10px] sm:text-[11px] font-mono text-slate-300 uppercase tracking-wider">
+                  Google Customer Rating
                 </div>
               </div>
             </div>

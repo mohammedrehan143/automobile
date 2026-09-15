@@ -43,10 +43,10 @@ export default function FeatureGrid() {
               onClick={() => scrollToSection("about")}
               className="group relative min-h-[360px] sm:min-h-[420px] lg:min-h-[460px] rounded-none border border-white/15 hover:border-white/40 overflow-hidden cursor-pointer transition-all duration-300 shadow-2xl flex flex-col justify-between p-6 sm:p-8"
             >
-              {/* Background Image: main.avif with subtle dark gradients */}
+              {/* Background Image: workshop-bay.png */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/main.avif"
+                  src="/workshop-bay.png"
                   alt="Indian Alignment Workshop Bay and Precision Facility"
                   fill
                   priority
@@ -104,7 +104,7 @@ export default function FeatureGrid() {
               >
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/bike1.avif"
+                    src="/wheel-truing.jpg"
                     alt="Two-Wheeler and Motorcycle Amenities"
                     fill
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
@@ -139,7 +139,7 @@ export default function FeatureGrid() {
               >
                 <div className="absolute inset-0 z-0">
                   <Image
-                    src="/car2.avif"
+                    src="/alloy-straightening.jpg"
                     alt="Vehicle and Four Wheeler Amenities"
                     fill
                     className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.05]"
@@ -228,10 +228,10 @@ export default function FeatureGrid() {
 
             {/* 2. Middle Event / Express Service Bay Card */}
             <div className="group relative rounded-none border border-white/15 hover:border-white/40 overflow-hidden transition-all duration-300 shadow-2xl p-5 sm:p-6 flex flex-col justify-between min-h-[300px] sm:min-h-[330px]">
-              {/* Background Image: car3.avif with dark gradient */}
+              {/* Background Image: tig-welding-press.jpg with dark gradient */}
               <div className="absolute inset-0 z-0">
                 <Image
-                  src="/car3.avif"
+                  src="/tig-welding-press.jpg"
                   alt="Laser Alignment Bay & Upcoming Events"
                   fill
                   className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"

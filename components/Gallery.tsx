@@ -22,54 +22,54 @@ interface GalleryPhoto {
 const EDITORIAL_GALLERY: GalleryPhoto[] = [
   {
     id: "gal-01",
-    title: "Computerized 3D Laser Alignment Bay",
+    title: "Computerized Laser Alignment & Workshop Bay",
     category: "Laser Geometry",
-    tag: "CALIBRATION RACK",
+    tag: "WORKSHOP BAY",
     caption:
-      "Multi-sensor digital imaging cameras measure camber, caster, and toe angles down to ±0.02°. Interlocking laser sensors ensure exact chassis center line tracking for four-wheelers.",
+      "Comprehensive multi-axis computerized equipment and service bays on Nehru Road, Kammanahalli. Calibrated for four-wheelers and precision two-wheelers.",
     aspectRatio: "16 / 10",
     gridSpan: "col-span-12 lg:col-span-7 lg:col-start-6",
     height: "h-[380px] sm:h-[480px]",
-    imageUrl: "/main.avif",
+    imageUrl: "/workshop-bay.png",
   },
   {
     id: "gal-02",
-    title: "Motorcycle Laser Tracking & Steering Geometry",
+    title: "Motorcycle Spoke Wheel Truing & Tyre Mount",
     category: "Two-Wheeler Geometry",
-    tag: "LASER ALIGNMENT",
+    tag: "WHEEL TRUING",
     caption:
-      "Precision computerized geometry calibration for two-wheelers to eliminate steering pull, ensure straight-line tracking, and optimize high-speed road stability.",
+      "Precision spoke truing and motorized tyre fitting to eliminate steering wobble, optimize radial runout, and ensure straight-line tracking.",
     aspectRatio: "4 / 5",
     gridSpan: "col-span-12 lg:col-span-5 lg:col-start-2",
     marginTop: "lg:-mt-24",
     height: "h-[420px] sm:h-[560px]",
-    imageUrl: "/bike1.avif",
+    imageUrl: "/wheel-truing.jpg",
   },
   {
     id: "gal-03",
-    title: "Precision Argon Shielded TIG Welding",
+    title: "Heavy Hydraulic Press & Argon TIG Welding Station",
     category: "Precision Fabrication",
-    tag: "ARGON TIG ARC",
+    tag: "HYDRAULIC PRESS & TIG",
     caption:
-      "High-integrity tungsten inert gas welding for aluminum alloys, stainless exhaust pipes, silencer brackets, engine cases, and reinforced motorcycle subframes.",
+      "Industrial heavy-duty hydraulic press for chassis and fork straightening, paired with Premier high-frequency argon shielded TIG welding setup.",
     aspectRatio: "16 / 11",
     gridSpan: "col-span-12 lg:col-span-6 lg:col-start-7",
     marginTop: "lg:mt-12",
     height: "h-[360px] sm:h-[500px]",
-    imageUrl: "/car2.avif",
+    imageUrl: "/tig-welding-press.jpg",
   },
   {
     id: "gal-04",
-    title: "High-Strength Aluminium & Steel TIG Fusion",
-    category: "Welding & Fabrication",
-    tag: "TIG FUSION BEAD",
+    title: "Alloy Wheel Bend Removal & Lathe Straightening",
+    category: "Alloy Repair",
+    tag: "ALLOY LATHE",
     caption:
-      "Argon-shielded arc welding delivering clean, penetration-tested weld beads on structural lugs, exhaust headers, brackets, and custom automotive mounts.",
+      "Specialized computerized alloy wheel straightening machine restoring bent and dented car/bike alloy wheels to factory radial tolerance.",
     aspectRatio: "1 / 1",
     gridSpan: "col-span-12 lg:col-span-5 lg:col-start-2",
     marginTop: "lg:-mt-16",
     height: "h-[380px] sm:h-[480px]",
-    imageUrl: "/car1.avif",
+    imageUrl: "/alloy-straightening.jpg",
   },
 ];
 
@@ -84,8 +84,8 @@ const COLLAGE_ITEMS = [
     aspect: "16 / 9",
     zIndex: 3,
     transform: "translateX(-50%)",
-    imageUrl: "/main.avif",
-    title: "Vehicle Laser Setup Bay",
+    imageUrl: "/workshop-bay.png",
+    title: "Main Workshop Bay",
   },
   {
     id: "col-2",
@@ -95,8 +95,8 @@ const COLLAGE_ITEMS = [
     width: "min(24vw, 320px)",
     aspect: "16 / 10",
     zIndex: 2,
-    imageUrl: "/bike1.avif",
-    title: "Sport Motorcycle Calibration",
+    imageUrl: "/wheel-truing.jpg",
+    title: "Wheel Truing Station",
   },
   {
     id: "col-3",
@@ -106,8 +106,8 @@ const COLLAGE_ITEMS = [
     width: "min(18vw, 240px)",
     aspect: "3 / 2",
     zIndex: 1,
-    imageUrl: "/car1.avif",
-    title: "Torque Wrench Calibration",
+    imageUrl: "/alloy-straightening.jpg",
+    title: "Alloy Straightening Lathe",
   },
   {
     id: "col-4",
@@ -117,8 +117,8 @@ const COLLAGE_ITEMS = [
     width: "min(24vw, 340px)",
     aspect: "4 / 3",
     zIndex: 2,
-    imageUrl: "/car2.avif",
-    title: "CNC Alloy Wheel Lathe",
+    imageUrl: "/tig-welding-press.jpg",
+    title: "Hydraulic Press & TIG Arc",
   },
   {
     id: "col-5",
@@ -128,8 +128,8 @@ const COLLAGE_ITEMS = [
     width: "min(16vw, 220px)",
     aspect: "1 / 1",
     zIndex: 1,
-    imageUrl: "/car3.avif",
-    title: "TIG Arc Fusion Bead",
+    imageUrl: "/shop-front.png",
+    title: "Official Workshop Signboard",
   },
   {
     id: "col-6",
@@ -139,8 +139,8 @@ const COLLAGE_ITEMS = [
     width: "min(20vw, 280px)",
     aspect: "16 / 9",
     zIndex: 2,
-    imageUrl: "/back.png",
-    title: "Damper Pressure Testing",
+    imageUrl: "/team.png",
+    title: "Master Engineers Crew",
   },
   {
     id: "col-7",
@@ -150,8 +150,8 @@ const COLLAGE_ITEMS = [
     width: "min(26vw, 340px)",
     aspect: "16 / 10",
     zIndex: 3,
-    imageUrl: "/bike1.avif",
-    title: "Handlebar Alignment Check",
+    imageUrl: "/workshop-bay.png",
+    title: "Tool & Diagnostic Rack",
   },
 ];
 
@@ -358,7 +358,7 @@ export default function Gallery() {
               <figcaption className="mt-4 w-full text-left space-y-1">
                 <div className="flex items-center justify-between font-mono text-[11px] text-accent uppercase tracking-wider">
                   <span>0{idx + 1} • {item.category}</span>
-                  <span className="text-slate-400">EXP 15+ YRS</span>
+                  <span className="text-slate-400">EXP 22+ YRS</span>
                 </div>
                 <h3 className="font-sans text-sm sm:text-base font-bold text-white tracking-tight uppercase">
                   {item.title}
@@ -386,14 +386,14 @@ export default function Gallery() {
         {/* Central Content Frame */}
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 text-center space-y-6">
           
-          {/* MOBILE ONLY: Top Showcase Banner Card */}
+          {/* MOBILE ONLY: Interactive Single Card Preview */}
           <div className="block md:hidden w-full max-w-md mx-auto">
             <div
               onClick={() => setActiveModalIdx(0)}
               className="relative w-full aspect-[16/10] rounded-none overflow-hidden border border-white/20 bg-[#111317] shadow-2xl cursor-pointer group"
             >
               <Image
-                src="/main.avif"
+                src="/workshop-bay.png"
                 alt="Laser Alignment Bay"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -433,7 +433,7 @@ export default function Gallery() {
               className="relative aspect-[4/3] rounded-none overflow-hidden border border-white/20 bg-[#111317] shadow-xl cursor-pointer group"
             >
               <Image
-                src="/bike1.avif"
+                src="/wheel-truing.jpg"
                 alt="Motorcycle Fork Calibration"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -441,7 +441,7 @@ export default function Gallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
               <div className="absolute bottom-2 left-2 right-2 flex items-center justify-between font-mono text-[9px]">
-                <span className="text-accent font-bold uppercase">FORK TRUING</span>
+                <span className="text-accent font-bold uppercase">WHEEL TRUING</span>
                 <span className="text-white/70">VIEW</span>
               </div>
             </div>
@@ -451,7 +451,7 @@ export default function Gallery() {
               className="relative aspect-[4/3] rounded-none overflow-hidden border border-white/20 bg-[#111317] shadow-xl cursor-pointer group"
             >
               <Image
-                src="/car2.avif"
+                src="/alloy-straightening.jpg"
                 alt="Alloy Wheel Repair"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

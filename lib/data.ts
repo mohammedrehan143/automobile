@@ -1,4 +1,4 @@
-import { ServiceItem, CustomerReview, GalleryImage, BusinessDayHours } from "./types";
+import { ServiceItem, CustomerReview, GalleryImage, BusinessDayHours, FounderInfo } from "./types";
 
 export const BUSINESS_INFO = {
   name: "INDIAN TWO AND FOUR WHEELER ALIGNMENT AND REPAIR",
@@ -21,8 +21,30 @@ export const BUSINESS_INFO = {
   longitude: 77.6344,
   rating: 4.8,
   reviewCount: 180,
-  yearsActive: "15+",
+  yearsActive: "22+",
 };
+
+export const FOUNDER_INFO: FounderInfo = {
+  name: "Master Founder & Chief Technical Director",
+  role: "Founder & Master Calibration Specialist",
+  yearsExperience: "22+ Years",
+  story: "Established on Nehru Road opposite NKGSB Bank in Kammanahalli, Indian Wheel Alignment was built on uncompromising mechanical mastery. Over 22 years of hands-on calibration, our founder pioneered multi-axis computerized laser diagnostics and precision hydraulic bench truing, establishing Kammanahalli's most trusted benchmark for vehicle safety and performance.",
+  quote: "True craftsmanship in automotive calibration isn't just about reading digital sensors—it's about understanding how steel, alloy, and rubber interact at highway speeds. For over 22 years, we've treated every single rider and driver's vehicle as if our own families were on board.",
+  photo: "", // Placeholder - ready for photo upload by user
+  milestones: [
+    { label: "Founded", val: "2002" },
+    { label: "Vehicles Calibrated", val: "28,000+" },
+    { label: "Active Mastery", val: "22+ Years" },
+    { label: "Google Rating", val: "4.8★" },
+  ],
+  guarantees: [
+    "Zero unnecessary parts swaps — diagnose and true before replace",
+    "Multi-axis digital laser telemetry spec sheets for all 4-wheelers",
+    "Specialized hydraulic bench truing for 2-wheeler chassis & fork bent tubes",
+    "Pure Argon TIG welding with zero compromise on rim tensile strength",
+  ],
+};
+
 
 export const SERVICES_DATA: ServiceItem[] = [
   {
@@ -37,7 +59,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     durationMinutes: 45,
     highlight: "Laser-Guided Multi-Axis Calibration",
     specs: ["Digital Camber & Toe Measurement", "Caster Angle Optimization", "Two-Wheeler Geometry & Tracking", "Full Before/After Calibration Spec Sheet"],
-    image: "/car1.avif",
+    image: "/workshop-bay.png",
   },
   {
     id: "tig-welding",
@@ -51,7 +73,35 @@ export const SERVICES_DATA: ServiceItem[] = [
     durationMinutes: 60,
     highlight: "Argon Shielded High-Strength Welds",
     specs: ["Aluminium Rim Crack Fusion", "Exhaust Header & Silencer Repair", "Bike Footrest & Stand Bracket Welds", "Structural Lug & Mount Reconditioning"],
-    image: "/main.avif",
+    image: "/tig-welding-press.jpg",
+  },
+  {
+    id: "tyre-change",
+    slug: "tyre-change",
+    number: "03",
+    title: "TYRE CHANGE & FITMENT",
+    category: "tyre",
+    vehicleType: "both",
+    shortDesc: "Pneumatic scratch-free tyre mounting, bead sealing, high-speed balancing, and puncture vulcanization for cars and bikes.",
+    fullDesc: "Equipped with motorized tyre changers and bead breakers to protect rim lips from scratches. We handle tube and tubeless tyre replacements, high-speed dynamic wheel balancing, and precision tyre pressure calibration.",
+    durationMinutes: 30,
+    highlight: "Scratch-Free Pneumatic Rim Mount",
+    specs: ["Pneumatic Arm Rim Lip Protection", "Tubeless Bead Sealing & Dynamic Balancing", "Two-Wheeler & Four-Wheeler Tyre Sizing", "Nitrogen & Pressure Calibration"],
+    image: "/wheel-truing.jpg",
+  },
+  {
+    id: "custom-alloy-wheels",
+    slug: "custom-alloy-wheels",
+    number: "04",
+    title: "CUSTOM ALLOY WHEELS INSTALLATION",
+    category: "alloy",
+    vehicleType: "both",
+    shortDesc: "Precision installation, PCD truing, bend removal, and hub-centric fitment for aftermarket and OEM alloy wheels.",
+    fullDesc: "Expert mounting and calibration for diamond-cut, forged, and cast alloy wheels. Includes computerized hub-centric alignment, bend straightening on our hydraulic lathe, and balance check.",
+    durationMinutes: 60,
+    highlight: "Computerized Hub-Centric Fitment",
+    specs: ["Aftermarket Alloy Upgrades & PCD Truing", "Wheel Bend Straightening & Lathe Curing", "Precision Lug Bolt Torquing", "High-Speed Dynamic Vibration Check"],
+    image: "/alloy-straightening.jpg",
   },
 ];
 
@@ -111,31 +161,45 @@ export const REVIEWS_DATA: CustomerReview[] = [
 export const GALLERY_DATA: GalleryImage[] = [
   {
     id: "gal-1",
-    title: "Laser Wheel Alignment Rig",
+    title: "Workshop Bay & Alignment Station",
     category: "alignment",
-    tag: "PRECISION CALIBRATION",
-    imageUrl: "/car1.avif",
+    tag: "WORKSHOP BAY",
+    imageUrl: "/workshop-bay.png",
   },
   {
     id: "gal-2",
-    title: "Argon TIG Arc Welding",
+    title: "Heavy Hydraulic Press & Argon TIG Welding",
     category: "welding",
-    tag: "ALLOY RESTORATION",
-    imageUrl: "/main.avif",
+    tag: "HYDRAULIC PRESS & TIG",
+    imageUrl: "/tig-welding-press.jpg",
   },
   {
     id: "gal-3",
-    title: "Two-Wheeler Precision Alignment Rig",
+    title: "Two-Wheeler Wheel Truing & Tyre Station",
     category: "alignment",
-    tag: "TWO-WHEELER GEOMETRY",
-    imageUrl: "/bike1.avif",
+    tag: "WHEEL TRUING",
+    imageUrl: "/wheel-truing.jpg",
   },
   {
     id: "gal-4",
-    title: "Argon Shielded TIG Welding",
+    title: "Alloy Wheel Bend Removal Lathe",
     category: "welding",
-    tag: "HIGH-INTEGRITY FUSION",
-    imageUrl: "/main.avif",
+    tag: "ALLOY STRAIGHTENING",
+    imageUrl: "/alloy-straightening.jpg",
+  },
+  {
+    id: "gal-5",
+    title: "Official Workshop Signboard - Nehru Road",
+    category: "alignment",
+    tag: "KAMMANAHALLI FACILITY",
+    imageUrl: "/shop-front.png",
+  },
+  {
+    id: "gal-6",
+    title: "Master Engineers Crew",
+    category: "welding",
+    tag: "SENIOR ENGINEER & ASSISTANT",
+    imageUrl: "/team.png",
   },
 ];
 

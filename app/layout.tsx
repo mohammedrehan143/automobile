@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     siteName: "Indian Two and Four Wheeler Alignment and Repair",
     images: [
       {
-        url: "/main.avif",
+        url: "/shop-front.png",
         width: 1200,
         height: 630,
         alt: "Indian Two and Four Wheeler Alignment and Repair Workshop Kammanahalli Bengaluru",
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     title: "INDIAN TWO AND FOUR WHEELER ALIGNMENT AND REPAIR | Bengaluru",
     description:
       "Precision computerized laser wheel alignment and argon TIG welding for cars and bikes in Bengaluru. Call 093438 42301.",
-    images: ["/main.avif"],
+    images: ["/shop-front.png"],
   },
   robots: {
     index: true,
@@ -101,7 +101,7 @@ export default function RootLayout({
     "@type": "AutoRepair",
     name: BUSINESS_INFO.name,
     alternateName: "Indian Wheel Alignment and Repair",
-    image: "/main.avif",
+    image: "/shop-front.png",
     telephone: BUSINESS_INFO.phone,
     url: siteUrl,
     address: {
