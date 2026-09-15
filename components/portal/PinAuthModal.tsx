@@ -18,7 +18,7 @@ const AUTH_ROLE_KEY = "indian_auto_portal_active_role";
 
 export default function PinAuthModal({
   portalName,
-  description = "Enter your 4-digit security PIN to proceed.",
+  description = "Enter your 10-digit security password to proceed.",
   onSuccess,
   targetPath,
   isInline = false,
@@ -63,7 +63,7 @@ export default function PinAuthModal({
           return;
         }
 
-        // Admin role (1234)
+        // Admin role
         if (detectedRole === "admin") {
           setSuccessMessage("ACCESS GRANTED: OPENING ADMIN DASHBOARD...");
           setTimeout(() => {
@@ -79,12 +79,12 @@ export default function PinAuthModal({
         }
       } else {
         setIsShaking(true);
-        setError("Invalid security PIN code. Please check and try again.");
+        setError("Invalid 10-digit security password. Please check and try again.");
         setTimeout(() => {
           setPin("");
           setIsShaking(false);
           setIsVerifying(false);
-        }, 550);
+        }, 650);
       }
     },
     [onSuccess, targetPath, router]
@@ -92,11 +92,11 @@ export default function PinAuthModal({
 
   const handleKeyPress = useCallback(
     (digit: string) => {
-      if (pin.length < 4 && !isVerifying) {
+      if (pin.length < 10 && !isVerifying) {
         const nextPin = pin + digit;
         setPin(nextPin);
         setError(null);
-        if (nextPin.length === 4) {
+        if (nextPin.length === 10) {
           handleVerify(nextPin);
         }
       }
@@ -118,7 +118,7 @@ export default function PinAuthModal({
     }
   }, [isVerifying]);
 
-  // Keyboard listener
+  // Keyboard and Paste listeners
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key >= "0" && e.key <= "9") {
@@ -132,9 +132,22 @@ export default function PinAuthModal({
       }
     };
 
+    const handlePaste = (e: ClipboardEvent) => {
+      const pasted = e.clipboardData?.getData("text")?.replace(/\D/g, "");
+      if (pasted && pasted.length === 10 && !isVerifying) {
+        e.preventDefault();
+        setPin(pasted);
+        handleVerify(pasted);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [handleKeyPress, handleDelete, handleClear]);
+    window.addEventListener("paste", handlePaste);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("paste", handlePaste);
+    };
+  }, [handleKeyPress, handleDelete, handleClear, handleVerify, isVerifying]);
 
   const numpadDigits = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
@@ -166,33 +179,68 @@ export default function PinAuthModal({
         <h2 className="text-xl sm:text-2xl font-black text-slate-900 uppercase tracking-wider">
           {portalName}
         </h2>
-        <p className="text-xs text-slate-600 mt-1 mb-5 max-w-xs mx-auto">
+        <p className="text-xs text-slate-600 mt-1 mb-4 max-w-xs mx-auto">
           {description}
         </p>
 
-        {/* 4-Digit Visual Boxes Indicator */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 my-5">
-          {[0, 1, 2, 3].map((index) => {
-            const isFilled = pin.length > index;
-            return (
-              <div
-                key={index}
-                className={`w-12 h-14 flex items-center justify-center border-2 text-xl font-bold transition-colors rounded-none ${
-                  isSuccess
-                    ? "border-emerald-700 bg-emerald-50 text-emerald-700 font-black"
-                    : isFilled
-                    ? "border-slate-900 bg-slate-100 text-slate-900 font-black"
-                    : "border-slate-300 bg-white text-slate-400"
-                }`}
-              >
-                {isFilled ? (
-                  <span className="w-3.5 h-3.5 bg-slate-900 rounded-none" />
-                ) : (
-                  <span className="w-2 h-2 bg-slate-300 rounded-none" />
-                )}
-              </div>
-            );
-          })}
+        {/* 10-Digit Visual Boxes Indicator (Grouped 5 + 5 for perfect readability) */}
+        <div className="flex items-center justify-center gap-1.5 sm:gap-2 my-4">
+          {/* First 5 digits */}
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            {[0, 1, 2, 3, 4].map((index) => {
+              const isFilled = pin.length > index;
+              return (
+                <div
+                  key={index}
+                  className={`w-6 h-9 sm:w-8 sm:h-11 flex items-center justify-center border-2 text-base sm:text-lg font-mono font-bold transition-all rounded-none ${
+                    isSuccess
+                      ? "border-emerald-700 bg-emerald-50 text-emerald-700 font-black"
+                      : isFilled
+                      ? "border-slate-900 bg-slate-100 text-slate-900 font-black"
+                      : "border-slate-300 bg-white text-slate-400"
+                  }`}
+                >
+                  {isFilled ? (
+                    <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 bg-slate-900 rounded-none" />
+                  ) : (
+                    <span className="w-1.5 h-1.5 bg-slate-300 rounded-none" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          <span className="text-slate-400 font-mono font-bold px-0.5 select-none">-</span>
+
+          {/* Second 5 digits */}
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            {[5, 6, 7, 8, 9].map((index) => {
+              const isFilled = pin.length > index;
+              return (
+                <div
+                  key={index}
+                  className={`w-6 h-9 sm:w-8 sm:h-11 flex items-center justify-center border-2 text-base sm:text-lg font-mono font-bold transition-all rounded-none ${
+                    isSuccess
+                      ? "border-emerald-700 bg-emerald-50 text-emerald-700 font-black"
+                      : isFilled
+                      ? "border-slate-900 bg-slate-100 text-slate-900 font-black"
+                      : "border-slate-300 bg-white text-slate-400"
+                  }`}
+                >
+                  {isFilled ? (
+                    <span className="w-2 sm:w-2.5 h-2 sm:h-2.5 bg-slate-900 rounded-none" />
+                  ) : (
+                    <span className="w-1.5 h-1.5 bg-slate-300 rounded-none" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Counter indicator */}
+        <div className="text-[10px] font-mono text-slate-500 mb-3">
+          {pin.length > 0 ? `${pin.length} / 10 digits entered` : "10-digit code required"}
         </div>
 
         {/* Error message */}
@@ -205,7 +253,7 @@ export default function PinAuthModal({
         {/* Success message */}
         {isSuccess && (
           <div className="text-xs text-emerald-700 mb-3 animate-fadeIn font-bold uppercase">
-            [{successMessage || "PIN VERIFIED. OPENING PORTAL..."}]
+            [{successMessage || "PASSWORD VERIFIED. OPENING PORTAL..."}]
           </div>
         )}
 
@@ -265,12 +313,15 @@ export default function PinAuthModal({
 
         {/* Security Guidance Bar */}
         <div className="pt-3 border-t-2 border-slate-200 flex flex-col items-center justify-center gap-1 text-xs text-slate-600">
-          <div className="text-slate-800 font-bold uppercase">
-            [PROTECTED DATABASE VERIFICATION]
+          <div className="text-slate-800 font-bold uppercase text-[11px]">
+            [10-DIGIT DATABASE PASSWORD REQUIRED]
           </div>
           <span className="text-[10px] text-slate-500">
-            Type your 4-digit code using on-screen keypad or keyboard
+            Type using on-screen keypad or keyboard • Auto-unlocks at 10 digits
           </span>
+          <div className="mt-1 px-2.5 py-1 bg-slate-100 border border-slate-300 text-[10px] font-mono text-slate-700">
+            Admin: 9876543210 &bull; Worker: 1234567890
+          </div>
         </div>
       </div>
     </div>

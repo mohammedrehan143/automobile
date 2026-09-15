@@ -35,7 +35,7 @@ export default function PortalHubPage() {
       <main className="max-w-xl mx-auto w-full my-auto py-8 flex flex-col items-center justify-center">
         <PinAuthModal
           portalName="Workshop Portal"
-          description="Enter your 4-digit security PIN to proceed. Admin PIN opens Executive Dashboard • Worker PIN opens Shop Floor Terminal."
+          description="Enter your 10-digit security password to proceed. Admin password opens Executive Dashboard • Worker password opens Shop Floor Terminal."
           isInline={true}
         />
       </main>

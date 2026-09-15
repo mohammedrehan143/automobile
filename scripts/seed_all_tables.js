@@ -11,13 +11,13 @@ async function seedAllTables() {
   console.log("=================================================");
 
   // ---------------------------------------------------------------------------
-  // 1. PORTAL SETTINGS (Dual PINs: Admin = 1234, Worker = 4321)
+  // 1. PORTAL SETTINGS (Dual Passwords: Admin = 9876543210, Worker = 1234567890)
   // ---------------------------------------------------------------------------
-  console.log("\n[1/8] Seeding portal_settings (Admin PIN: 1234, Worker PIN: 4321)...");
+  console.log("\n[1/8] Seeding portal_settings (Admin: 9876543210, Worker: 1234567890)...");
   try {
     const portalKeys = [
-      { portal_key: "admin_pin", portal_pin: "1234" },
-      { portal_key: "worker_pin", portal_pin: "4321" }
+      { portal_key: "admin_pin", portal_pin: "9876543210" },
+      { portal_key: "worker_pin", portal_pin: "1234567890" }
     ];
 
     for (const key of portalKeys) {
@@ -26,7 +26,7 @@ async function seedAllTables() {
         console.warn(`Upsert portal_settings ${key.portal_key}:`, error.message);
       }
     }
-    console.log("✓ portal_settings configured with Admin PIN (1234) and Worker PIN (4321).");
+    console.log("✓ portal_settings configured with Admin (9876543210) and Worker (1234567890).");
   } catch (err) {
     console.warn("portal_settings error:", err.message);
   }
@@ -348,8 +348,8 @@ async function seedAllTables() {
 
   console.log("\n=================================================");
   console.log("ALL SUPABASE TABLES SEEDED AND CONFIGURED!");
-  console.log("Admin PIN: 1234");
-  console.log("Worker PIN: 4321");
+  console.log("Admin Password: 9876543210");
+  console.log("Worker Password: 1234567890");
   console.log("=================================================");
 }
 

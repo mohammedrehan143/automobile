@@ -33,7 +33,7 @@ async function runQASuite() {
     const adminEntry = pins.find((p) => p.portal_key === "admin_pin");
     const workerEntry = pins.find((p) => p.portal_key === "worker_pin");
 
-    const pass1 = adminEntry && workerEntry && adminEntry.portal_pin === "1234" && workerEntry.portal_pin === "4321";
+    const pass1 = adminEntry && workerEntry && adminEntry.portal_pin === "9876543210" && workerEntry.portal_pin === "1234567890";
     results.push({
       test: "1. Dual PIN Database Integrity",
       status: pass1 ? "PASS" : "FAIL",

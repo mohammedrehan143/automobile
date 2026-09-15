@@ -29,7 +29,7 @@ export default function AdminPage() {
       {!isAuthenticated && (
         <PinAuthModal
           portalName="Admin Portal"
-          description="Enter your 4-digit security PIN to access vehicle analytics, customer tracking, and branch reports."
+          description="Enter your 10-digit security password to access vehicle analytics, customer tracking, and branch reports."
           onSuccess={() => setIsAuthenticated(true)}
         />
       )}

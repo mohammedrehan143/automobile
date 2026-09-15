@@ -29,7 +29,7 @@ export default function WorkerPage() {
       {!isAuthenticated && (
         <PinAuthModal
           portalName="Worker Portal"
-          description="Enter your 4-digit security PIN to log customer vehicle jobs, services, and billing."
+          description="Enter your 10-digit security password to log customer vehicle jobs, services, and billing."
           onSuccess={() => setIsAuthenticated(true)}
         />
       )}

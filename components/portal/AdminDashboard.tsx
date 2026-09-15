@@ -68,6 +68,14 @@ export default function AdminDashboard() {
   };
 
   const handleSavePins = async () => {
+    if (!adminPinInput || adminPinInput.length !== 10 || !workerPinInput || workerPinInput.length !== 10) {
+      setPinSaveMsg({
+        type: "error",
+        text: "Both Admin and Worker passwords must be exactly 10 digits.",
+      });
+      return;
+    }
+
     setSavingPins(true);
     setPinSaveMsg(null);
 
@@ -77,7 +85,7 @@ export default function AdminDashboard() {
     ]);
 
     if (adminRes.success && workerRes.success) {
-      setPinSaveMsg({ type: "success", text: "PIN codes updated successfully in database." });
+      setPinSaveMsg({ type: "success", text: "10-digit passwords updated successfully in database." });
       setTimeout(() => {
         setPinSaveMsg(null);
         setShowPinModal(false);
@@ -85,7 +93,7 @@ export default function AdminDashboard() {
     } else {
       setPinSaveMsg({
         type: "error",
-        text: adminRes.error || workerRes.error || "Failed to update PIN codes.",
+        text: adminRes.error || workerRes.error || "Failed to update passwords.",
       });
     }
     setSavingPins(false);
@@ -706,7 +714,7 @@ export default function AdminDashboard() {
                   SECURITY CONFIGURATION
                 </div>
                 <h3 className="font-black text-lg uppercase tracking-tight text-slate-900">
-                  Change Portal PIN Codes
+                  Change Portal Passwords
                 </h3>
               </div>
               <button
@@ -721,7 +729,7 @@ export default function AdminDashboard() {
             </div>
 
             <p className="text-xs text-slate-600 leading-relaxed font-normal">
-              Update the 4-digit PIN codes directly stored in your database (portal_settings table).
+              Update the 10-digit passwords directly stored in your database (portal_settings table).
             </p>
 
             {/* Inputs Form */}
@@ -729,15 +737,15 @@ export default function AdminDashboard() {
               {/* Admin PIN */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700 flex items-center justify-between">
-                  <span className="text-[#7B0818] uppercase">Admin Portal PIN:</span>
+                  <span className="text-[#7B0818] uppercase">Admin Password (10 digits):</span>
                   <span className="text-[10px] text-slate-500 font-normal">Unlocks /admin</span>
                 </label>
                 <input
                   type="password"
-                  maxLength={8}
+                  maxLength={10}
                   value={adminPinInput}
                   onChange={(e) => setAdminPinInput(e.target.value.replace(/\D/g, ""))}
-                  placeholder="Enter new 4-digit PIN"
+                  placeholder="Enter 10-digit password (e.g. 9876543210)"
                   className="w-full bg-slate-50 border-2 border-slate-300 focus:border-[#7B0818] px-4 py-2.5 text-slate-900 font-black text-lg tracking-widest text-center focus:outline-none rounded-none"
                 />
               </div>
@@ -745,15 +753,15 @@ export default function AdminDashboard() {
               {/* Worker PIN */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-slate-700 flex items-center justify-between">
-                  <span className="text-amber-700 uppercase">Worker Portal PIN:</span>
+                  <span className="text-amber-700 uppercase">Worker Password (10 digits):</span>
                   <span className="text-[10px] text-slate-500 font-normal">Unlocks /worker</span>
                 </label>
                 <input
                   type="password"
-                  maxLength={8}
+                  maxLength={10}
                   value={workerPinInput}
                   onChange={(e) => setWorkerPinInput(e.target.value.replace(/\D/g, ""))}
-                  placeholder="Enter new 4-digit PIN"
+                  placeholder="Enter 10-digit password (e.g. 1234567890)"
                   className="w-full bg-slate-50 border-2 border-slate-300 focus:border-amber-600 px-4 py-2.5 text-slate-900 font-black text-lg tracking-widest text-center focus:outline-none rounded-none"
                 />
               </div>

@@ -33,8 +33,8 @@ async function testAll() {
   console.log(`workshop_jobs count: ${jobs ? jobs.length : 0} live records`);
 
   console.log("\n=== SUMMARY ===");
-  console.log("Admin PIN (1234) -> Enters Admin Portal (/admin)");
-  console.log("Worker PIN (4321) -> Enters Worker Portal (/worker)");
+  console.log("Admin Password (9876543210) -> Enters Admin Portal (/admin)");
+  console.log("Worker Password (1234567890) -> Enters Worker Portal (/worker)");
   console.log("All tables populated with real automotive repair business data.");
 }
 

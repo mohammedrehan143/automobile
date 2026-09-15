@@ -86,12 +86,6 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <Link
-              href="/portal"
-              className="px-3.5 py-1.5 bg-[#7B0818] hover:bg-[#600512] active:bg-[#4E040E] border border-[#9A0D22] text-white transition-colors flex items-center gap-1 font-sans text-xs font-bold uppercase tracking-wider rounded-none"
-            >
-              <span>[WORKSHOP]</span>
-            </Link>
           </nav>
 
           {/* Right Action: Hamburger Menu Icon */}
@@ -154,17 +148,6 @@ export default function Navbar() {
                 <ArrowRight className="w-4 h-4 text-red-500" />
               </a>
             ))}
-
-            {/* Unified Workshop in Mobile Menu */}
-            <div className="pt-2">
-              <Link
-                href="/portal"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 px-4 rounded-none bg-[#4A0812] hover:bg-[#600512] border-2 border-[#7B0818] text-white font-sans text-xs font-bold text-center flex items-center justify-center gap-1 uppercase tracking-wider"
-              >
-                <span>[WORKSHOP]</span>
-              </Link>
-            </div>
 
             <a
               href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20book%20a%20service."
