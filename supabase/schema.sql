@@ -130,10 +130,7 @@ CREATE TABLE IF NOT EXISTS public.workshop_branches (
 );
 
 INSERT INTO public.workshop_branches (id, name, short_name, area, is_main) VALUES
-('branch-kammanahalli', 'Kammanahalli Main (Nehru Rd)', 'Kammanahalli', 'Kammanahalli, Bengaluru', true),
-('branch-indiranagar', 'Indiranagar Express Bay (100ft Rd)', 'Indiranagar', 'Indiranagar, Bengaluru', false),
-('branch-whitefield', 'Whitefield Tech Hub (ITPB Main)', 'Whitefield', 'Whitefield, Bengaluru', false),
-('branch-hebbal', 'Hebbal Highway Center (Outer Ring)', 'Hebbal', 'Hebbal, Bengaluru', false)
+('branch-kammanahalli', 'Kammanahalli Main (Nehru Rd)', 'Kammanahalli', 'Kammanahalli, Bengaluru', true)
 ON CONFLICT (id) DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS public.service_presets (
@@ -216,56 +213,20 @@ LANGUAGE plpgsql
 SECURITY DEFINER
 AS $$
 DECLARE
-    today_d DATE := CURRENT_DATE;
     now_ts TIMESTAMPTZ := timezone('utc'::text, now());
 BEGIN
-    -- Delete previous demo jobs to prevent duplicate pile-up
+    -- Live Production: Purge any demo flagged records to ensure account stays zero-polluted
     DELETE FROM public.workshop_jobs WHERE is_demo = TRUE;
-
-    -- Insert fresh, realistic demo records dynamically anchored to TODAY
-    INSERT INTO public.workshop_jobs (
-        job_id, customer_name, customer_phone, vehicle_type, vehicle_brand, vehicle_model, vehicle_number,
-        branch, services_done, total_amount, payment_status, payment_mode, status, is_demo, date, created_at
-    ) VALUES
-    -- TODAY's Jobs (Day Basis)
-    ('JOB-26-0401', 'Customer', '', 'car', 'Hyundai', 'Creta', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['3D Computerized Laser Alignment', 'Dynamic High-Speed Wheel Balancing', 'Rim Bend Removal & Truing'], 1850.00, 'paid', 'cash', 'completed', TRUE, today_d, now_ts - INTERVAL '2 hours'),
-    ('JOB-26-0402', 'Customer', '', 'bike', 'Royal Enfield', 'Himalayan 450', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Fork Straightening & T-Stem Alignment', 'TIG Welding & Fabrication'], 1450.00, 'paid', 'cash', 'completed', TRUE, today_d, now_ts - INTERVAL '3 hours 30 mins'),
-    ('JOB-26-0403', 'Customer', '', 'car', 'Maruti Suzuki', 'Swift', '', 'Indiranagar Express Bay (100ft Rd)', ARRAY['Tyre Change & Bead Seal', '3D Computerized Laser Alignment'], 1000.00, 'paid', 'cash', 'completed', TRUE, today_d, now_ts - INTERVAL '4 hours'),
-    ('JOB-26-0404', 'Customer', '', 'bike', 'Yamaha', 'MT-15 V2', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Rim Bend Removal & Truing', 'Tyre Change & Bead Seal'], 1100.00, 'paid', 'cash', 'in_progress', TRUE, today_d, now_ts - INTERVAL '5 hours 15 mins'),
-    ('JOB-26-0405', 'Customer', '', 'car', 'Tata Motors', 'Harrier', '', 'Whitefield Tech Hub (ITPB Main)', ARRAY['3D Computerized Laser Alignment', 'Suspension Checks & Damper Overhaul'], 2450.00, 'paid', 'cash', 'in_progress', TRUE, today_d, now_ts - INTERVAL '6 hours'),
-    ('JOB-26-0406', 'Customer', '', 'bike', 'KTM', 'Duke 390', '', 'Hebbal Highway Center (Outer Ring)', ARRAY['Alloy Rim Crack TIG Arc Welding', 'Dynamic High-Speed Wheel Balancing'], 1850.00, 'paid', 'cash', 'completed', TRUE, today_d, now_ts - INTERVAL '7 hours'),
-
-    -- YESTERDAY's Jobs (Past 24-48 Hours)
-    ('JOB-26-0391', 'Customer', '', 'car', 'Hyundai', 'i20 N-Line', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['3D Computerized Laser Alignment', 'Rim Bend Removal & Truing'], 1400.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '1 day', now_ts - INTERVAL '1 day 2 hours'),
-    ('JOB-26-0392', 'Customer', '', 'bike', 'Royal Enfield', 'Classic 350', '', 'Indiranagar Express Bay (100ft Rd)', ARRAY['Fork Straightening & T-Stem Alignment', 'TIG Welding & Fabrication'], 1450.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '1 day', now_ts - INTERVAL '1 day 4 hours'),
-    ('JOB-26-0393', 'Customer', '', 'car', 'Toyota', 'Innova Hycross', '', 'Hebbal Highway Center (Outer Ring)', ARRAY['3D Computerized Laser Alignment', 'Dynamic High-Speed Wheel Balancing'], 1100.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '1 day', now_ts - INTERVAL '1 day 6 hours'),
-    ('JOB-26-0394', 'Customer', '', 'bike', 'TVS Motor', 'Apache RTR 200', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Rim Bend Removal & Truing', 'Tyre Change & Bead Seal'], 1100.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '1 day', now_ts - INTERVAL '1 day 7 hours'),
-
-    -- THIS WEEK & MONTH (Last 3 - 25 Days)
-    ('JOB-26-0381', 'Customer', '', 'car', 'Mahindra', 'Thar 4x4', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['3D Computerized Laser Alignment', 'Suspension Checks & Damper Overhaul'], 2450.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '3 days', now_ts - INTERVAL '3 days 3 hours'),
-    ('JOB-26-0382', 'Customer', '', 'bike', 'Bajaj Auto', 'Dominar 400', '', 'Indiranagar Express Bay (100ft Rd)', ARRAY['Fork Straightening & T-Stem Alignment', 'TIG Welding & Fabrication'], 1450.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '4 days', now_ts - INTERVAL '4 days 5 hours'),
-    ('JOB-26-0383', 'Customer', '', 'car', 'Tata Motors', 'Nexon', '', 'Whitefield Tech Hub (ITPB Main)', ARRAY['3D Computerized Laser Alignment', 'Rim Bend Removal & Truing'], 1400.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '6 days', now_ts - INTERVAL '6 days 2 hours'),
-    ('JOB-26-0384', 'Customer', '', 'car', 'Maruti Suzuki', 'Baleno', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['3D Computerized Laser Alignment', 'Dynamic High-Speed Wheel Balancing'], 1100.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '8 days', now_ts - INTERVAL '8 days 4 hours'),
-    ('JOB-26-0385', 'Customer', '', 'bike', 'Honda 2-Wheelers', 'Activa 6G', '', 'Hebbal Highway Center (Outer Ring)', ARRAY['Rim Bend Removal & Truing', 'Tyre Change & Bead Seal'], 1100.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '12 days', now_ts - INTERVAL '12 days 3 hours'),
-    ('JOB-26-0386', 'Customer', '', 'car', 'Hyundai', 'Venue', '', 'Indiranagar Express Bay (100ft Rd)', ARRAY['3D Computerized Laser Alignment', 'Alloy Rim Crack TIG Arc Welding'], 2050.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '15 days', now_ts - INTERVAL '15 days 6 hours'),
-    ('JOB-26-0387', 'Customer', '', 'bike', 'Royal Enfield', 'Hunter 350', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Fork Straightening & T-Stem Alignment'], 600.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '18 days', now_ts - INTERVAL '18 days 2 hours'),
-    ('JOB-26-0388', 'Customer', '', 'car', 'Volkswagen', 'Virtus', '', 'Whitefield Tech Hub (ITPB Main)', ARRAY['3D Computerized Laser Alignment', 'Dynamic High-Speed Wheel Balancing', 'Rim Bend Removal & Truing'], 1850.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '22 days', now_ts - INTERVAL '22 days 5 hours'),
-
-    -- THIS YEAR (Past Months of Current Year for Annual Charts)
-    ('JOB-26-0201', 'Customer', '', 'car', 'BMW', '3 Series', '', 'Indiranagar Express Bay (100ft Rd)', ARRAY['3D Computerized Laser Alignment', 'Alloy Rim Crack TIG Arc Welding'], 2050.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '45 days', now_ts - INTERVAL '45 days'),
-    ('JOB-26-0202', 'Customer', '', 'bike', 'Triumph', 'Speed 400', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Fork Straightening & T-Stem Alignment', 'Rim Bend Removal & Truing'], 1350.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '60 days', now_ts - INTERVAL '60 days'),
-    ('JOB-26-0150', 'Customer', '', 'car', 'Mahindra', 'Scorpio-N', '', 'Hebbal Highway Center (Outer Ring)', ARRAY['3D Computerized Laser Alignment', 'Suspension Checks & Damper Overhaul'], 2450.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '75 days', now_ts - INTERVAL '75 days'),
-    ('JOB-26-0151', 'Customer', '', 'bike', 'Ather Energy', 'Ather 450X', '', 'Kammanahalli Main (Nehru Rd)', ARRAY['Tyre Change & Bead Seal', 'Rim Bend Removal & Truing'], 1100.00, 'paid', 'cash', 'completed', TRUE, today_d - INTERVAL '90 days', now_ts - INTERVAL '90 days');
 
     -- Update last refresh timestamp in portal_settings
     UPDATE public.portal_settings
-    SET last_demo_refresh = now_ts
-    WHERE portal_key IN ('admin_pin', 'master_pin');
+    SET last_demo_refresh = now_ts, updated_at = now_ts
+    WHERE portal_key IN ('admin_pin', 'worker_pin');
 
     RETURN json_build_object(
         'success', TRUE,
         'refreshed_at', now_ts,
-        'records_seeded', 22
+        'records_seeded', 0
     );
 END;
 $$;

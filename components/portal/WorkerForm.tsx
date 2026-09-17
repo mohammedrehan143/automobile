@@ -32,7 +32,7 @@ import { VehicleType, WorkshopJob } from "@/lib/workshopTypes";
 export default function WorkerForm() {
   // Form State
   const [vehicleType, setVehicleType] = useState<VehicleType>("car");
-  const [branch, setBranch] = useState<string>(WORKSHOP_BRANCHES[0].name);
+  const branch = WORKSHOP_BRANCHES[0].name;
   const [vehicleBrand, setVehicleBrand] = useState<string>("");
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [customServiceInput, setCustomServiceInput] = useState<string>("");
@@ -202,22 +202,14 @@ export default function WorkerForm() {
             </h1>
           </div>
 
-          {/* Bay / Branch Selector */}
+          {/* Bay / Branch Indicator */}
           <div className="flex items-center gap-2 bg-slate-50 border border-slate-300 p-2 rounded-none self-start sm:self-auto">
             <MapPin className="w-4 h-4 text-red-600 shrink-0" />
             <div className="flex flex-col">
-              <span className="text-[9px] uppercase font-bold text-slate-500">Branch</span>
-              <select
-                value={branch}
-                onChange={(e) => setBranch(e.target.value)}
-                className="bg-transparent text-slate-900 text-xs font-bold focus:outline-none cursor-pointer"
-              >
-                {WORKSHOP_BRANCHES.map((b) => (
-                  <option key={b.id} value={b.name} className="bg-white text-slate-900">
-                    {b.shortName}
-                  </option>
-                ))}
-              </select>
+              <span className="text-[9px] uppercase font-bold text-slate-500">Workshop Facility</span>
+              <span className="text-slate-900 text-xs font-bold">
+                Kammanahalli Main (Nehru Rd)
+              </span>
             </div>
           </div>
         </div>

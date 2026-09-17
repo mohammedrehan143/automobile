@@ -8,27 +8,6 @@ export const WORKSHOP_BRANCHES: BranchLocation[] = [
     area: "Kammanahalli, Bengaluru",
     isMain: true,
   },
-  {
-    id: "branch-indiranagar",
-    name: "Indiranagar Express Bay (100ft Rd)",
-    shortName: "Indiranagar",
-    area: "Indiranagar, Bengaluru",
-    isMain: false,
-  },
-  {
-    id: "branch-whitefield",
-    name: "Whitefield Tech Hub (ITPB Main)",
-    shortName: "Whitefield",
-    area: "Whitefield, Bengaluru",
-    isMain: false,
-  },
-  {
-    id: "branch-hebbal",
-    name: "Hebbal Highway Center (Outer Ring)",
-    shortName: "Hebbal",
-    area: "Hebbal, Bengaluru",
-    isMain: false,
-  },
 ];
 
 export const CAR_BRANDS: BrandSuggestion[] = [

@@ -28,7 +28,6 @@ export default function AdminDashboard() {
 
   // Filters
   const [timePeriod, setTimePeriod] = useState<TimeFilterPeriod>("day");
-  const [selectedBranch, setSelectedBranch] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<"date_desc" | "date_asc" | "amount_desc" | "amount_asc">("date_desc");
 
@@ -39,7 +38,6 @@ export default function AdminDashboard() {
   // Job Details / Receipt Modal
   const [activeDetailJob, setActiveDetailJob] = useState<WorkshopJob | null>(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
-  const [isRefreshingDemo, setIsRefreshingDemo] = useState(false);
 
   // PIN Settings Modal State
   const [showPinModal, setShowPinModal] = useState(false);
@@ -62,11 +60,11 @@ export default function AdminDashboard() {
     setLoading(false);
   };
 
-  const handleRefreshDemoData = async () => {
-    setIsRefreshingDemo(true);
+  const handleSyncDatabase = async () => {
+    setLoading(true);
     await triggerDemoRefreshRPC();
     await loadData();
-    setIsRefreshingDemo(false);
+    setLoading(false);
   };
 
   const handleSavePins = async () => {
@@ -203,10 +201,10 @@ export default function AdminDashboard() {
     return `${hours.toString().padStart(2, "0")}h ${minutes.toString().padStart(2, "0")}m ${seconds.toString().padStart(2, "0")}s`;
   }, [currentTime]);
 
-  // Compute stats according to active time period and selected branch
+  // Compute stats according to active time period
   const stats: WorkshopStats = useMemo(() => {
-    return computeWorkshopStats(jobs, timePeriod, selectedBranch, currentTime.toISOString());
-  }, [jobs, timePeriod, selectedBranch, currentTime]);
+    return computeWorkshopStats(jobs, timePeriod, "all", currentTime.toISOString());
+  }, [jobs, timePeriod, currentTime]);
 
   // Filter and sort jobs into a single unified list
   const filteredJobs = useMemo(() => {
@@ -248,15 +246,7 @@ export default function AdminDashboard() {
           }
         }
 
-        // 2. Branch filter
-        if (selectedBranch !== "all") {
-          const matchesBranch =
-            job.branch.toLowerCase().includes(selectedBranch.toLowerCase()) ||
-            selectedBranch.toLowerCase().includes(job.branch.toLowerCase());
-          if (!matchesBranch) return false;
-        }
-
-        // 3. Global Search Query
+        // 2. Global Search Query
         if (searchQuery.trim()) {
           const q = searchQuery.toLowerCase();
           const matchQuery =
@@ -291,7 +281,6 @@ export default function AdminDashboard() {
   }, [
     jobs,
     timePeriod,
-    selectedBranch,
     searchQuery,
     sortBy,
     currentTime,
@@ -308,8 +297,7 @@ export default function AdminDashboard() {
   // Export to CSV
   const handleExportCSV = () => {
     const periodLabel = timePeriod.toUpperCase();
-    const branchLabel = selectedBranch === "all" ? "ALL-BRANCHES" : selectedBranch.replace(/[^a-zA-Z0-9]/g, "-");
-    exportJobsToCSV(filteredJobs, `Customer-Records-${periodLabel}-${branchLabel}.csv`);
+    exportJobsToCSV(filteredJobs, `Customer-Records-${periodLabel}-Kammanahalli-Main.csv`);
   };
 
   return (
@@ -324,26 +312,26 @@ export default function AdminDashboard() {
                 DATABASE MANAGEMENT &amp; REVENUE ANALYTICS
               </span>
               <span className="inline-block px-2.5 sm:px-3 py-1 bg-slate-100 border border-slate-300 text-slate-700 text-[10px] sm:text-xs font-bold uppercase rounded-none tracking-wider">
-                AUTO-RESETS AT 11:59 PM • NEXT RESET IN {timeUntilReset}
+                KAMMANAHALLI FACILITY • DAILY INTAKE CYCLES AT 11:59 PM ({timeUntilReset} REMAINING)
               </span>
             </div>
             <h1 className="text-xl sm:text-3xl font-black text-slate-900 uppercase tracking-tight break-words">
               Workshop Admin Dashboard
             </h1>
             <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl font-normal">
-              Live daily tracking resets automatically at 11:59 PM. All historical records seamlessly accumulate into Monthly and Yearly database archives.
+              Today&apos;s intake counter starts fresh each morning. All customer records are permanently preserved in Monthly, Yearly, and All-Time database archives.
             </p>
           </div>
 
-          {/* Action Tools: Reset 24h, PINs, Export, Refresh */}
+          {/* Action Tools: Sync, PINs, Export */}
           <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 w-full lg:w-auto">
             <button
-              onClick={handleRefreshDemoData}
-              disabled={isRefreshingDemo || loading}
+              onClick={handleSyncDatabase}
+              disabled={loading}
               className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-[#7B0818] hover:bg-[#600512] active:bg-[#4E040E] border border-[#9A0D22] text-white text-[11px] sm:text-xs font-bold uppercase transition-colors rounded-none cursor-pointer disabled:opacity-50 text-center"
-              title="Reset dynamic 24-hour demo dataset in Supabase"
+              title="Sync live records and verify database connection"
             >
-              {isRefreshingDemo ? "REFRESHING..." : "RESET 24H DEMO"}
+              {loading ? "SYNCING..." : "SYNC DATABASE"}
             </button>
 
             <button
@@ -361,20 +349,11 @@ export default function AdminDashboard() {
             >
               EXPORT CSV
             </button>
-
-            <button
-              onClick={loadData}
-              disabled={loading}
-              className="px-3 py-2 sm:px-3.5 sm:py-2.5 bg-slate-100 hover:bg-slate-200 border-2 border-slate-300 text-slate-800 text-[11px] sm:text-xs font-bold uppercase transition-colors rounded-none cursor-pointer text-center"
-              title="Reload from Database"
-            >
-              {loading ? "LOADING..." : "REFRESH"}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* 2. TIME PERIOD SELECTOR & BRANCH FILTER BAR */}
+      {/* 2. TIME PERIOD SELECTOR & FACILITY BADGE */}
       <div className="bg-white border-2 border-slate-300 p-3 sm:p-5 shadow-xs flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 rounded-none w-full max-w-full min-w-0">
         {/* TIME PERIOD TABS */}
         <div className="flex items-center gap-1.5 p-1 bg-slate-100 border border-slate-300 overflow-x-auto rounded-none w-full md:w-auto max-w-full">
@@ -401,23 +380,15 @@ export default function AdminDashboard() {
           })}
         </div>
 
-        {/* BRANCH FILTER SELECTOR */}
-        <div className="flex items-center gap-2 bg-slate-50 border border-slate-300 px-3 py-2 rounded-none w-full md:w-auto">
-          <span className="text-xs text-slate-600 whitespace-nowrap uppercase font-bold shrink-0">Branch:</span>
-          <select
-            value={selectedBranch}
-            onChange={(e) => setSelectedBranch(e.target.value)}
-            className="bg-transparent text-slate-900 text-xs font-bold focus:outline-none cursor-pointer rounded-none w-full md:w-auto"
-          >
-            <option value="all" className="bg-white text-slate-900">
-              All Branches Combined
-            </option>
-            {WORKSHOP_BRANCHES.map((b) => (
-              <option key={b.id} value={b.name} className="bg-white text-slate-900">
-                {b.name}
-              </option>
-            ))}
-          </select>
+        {/* SINGLE FACILITY BADGE (ONLY 1 BRANCH: KAMMANAHALLI) */}
+        <div className="flex items-center gap-2 bg-slate-50 border border-slate-300 px-3.5 py-2 rounded-none w-full md:w-auto">
+          <span className="text-xs text-slate-600 whitespace-nowrap uppercase font-bold shrink-0">Facility:</span>
+          <span className="text-xs font-black text-slate-900 uppercase">
+            {WORKSHOP_BRANCHES[0].name}
+          </span>
+          <span className="ml-1 px-1.5 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">
+            ONLY BRANCH
+          </span>
         </div>
       </div>
 
@@ -431,7 +402,7 @@ export default function AdminDashboard() {
                 TOTAL REVENUE ({timePeriod === "day" ? "TODAY" : timePeriod === "month" ? "THIS MONTH ACCUMULATED" : timePeriod === "year" ? "THIS YEAR ACCUMULATED" : "ALL TIME ARCHIVE"})
               </span>
               <span className="text-[10px] sm:text-xs px-2.5 py-0.5 bg-[#4A0812] border border-[#7B0818] text-white font-bold uppercase rounded-none">
-                {selectedBranch === "all" ? "ALL BRANCHES" : selectedBranch.split(" (")[0]}
+                KAMMANAHALLI MAIN (HQ)
               </span>
             </div>
             <div className="mt-3 text-3xl sm:text-5xl font-black text-slate-900 tracking-tight break-words">
@@ -441,7 +412,7 @@ export default function AdminDashboard() {
           <div className="mt-4 pt-4 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
             <span className="text-[11px] sm:text-xs">
               {timePeriod === "day"
-                ? `Today's gross earnings (Resets at 11:59 PM • ${timeUntilReset} remaining)`
+                ? `Today's intake counter (New day cycle in ${timeUntilReset} • All records stored permanently)`
                 : `Total accumulated revenue for ${timePeriod.toUpperCase()} across all past days`}
             </span>
             <span className="text-slate-800 font-bold">{filteredJobs.length} Transactions</span>
@@ -538,8 +509,30 @@ export default function AdminDashboard() {
             <tbody className="divide-y divide-slate-200">
               {filteredJobs.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="py-12 text-center text-slate-500">
-                    No records found in database for the selected filters.
+                  <td colSpan={7} className="py-12 px-4 text-center">
+                    <div className="max-w-md mx-auto space-y-3">
+                      <div className="text-sm font-bold text-slate-800 uppercase tracking-wide">
+                        {timePeriod === "day"
+                          ? `0 Jobs Logged For Today (${getLocalTodayDateString(currentTime)})`
+                          : "No records found"}
+                      </div>
+                      <p className="text-xs text-slate-600 leading-relaxed">
+                        {timePeriod === "day"
+                          ? `The daily intake counter starts fresh each morning. All ${jobs.length} customer records are permanently preserved in your database archive.`
+                          : "No records found matching your current filter."}
+                      </p>
+                      {timePeriod === "day" && jobs.length > 0 && (
+                        <div className="pt-2">
+                          <button
+                            type="button"
+                            onClick={() => setTimePeriod("month")}
+                            className="px-4 py-2 bg-[#7B0818] hover:bg-[#600512] text-white text-xs font-bold uppercase transition-colors cursor-pointer"
+                          >
+                            View This Month&apos;s Records ({jobs.length} Total Saved)
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </td>
                 </tr>
               ) : (
