@@ -108,7 +108,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-2 pt-1 text-[11px] text-slate-400">
                 <Clock className="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5" />
-                <span>Mon–Sat: 9:30 AM – 8:30 PM<br />Sun: 9:30 AM – 6:00 PM</span>
+                <span>Mon–Sun: 9:00 AM – 11:00 PM</span>
               </div>
             </div>
           </div>
@@ -139,7 +139,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
+              href={`${BUSINESS_INFO.whatsappUrl}?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20inquire%20about%20your%20services.`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors flex items-center gap-1.5 text-slate-400 font-medium"

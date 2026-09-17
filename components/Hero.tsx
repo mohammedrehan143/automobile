@@ -141,7 +141,7 @@ export default function Hero() {
     const text = encodeURIComponent(
       "Hello Indian Alignment, I would like to book a service appointment for my vehicle."
     );
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   const servicesList = [

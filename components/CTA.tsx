@@ -8,7 +8,7 @@ export default function CTA() {
     const text = encodeURIComponent(
       "Hello Indian Alignment, I would like to book an appointment for my vehicle."
     );
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   return (
@@ -59,7 +59,7 @@ export default function CTA() {
             </div>
 
             <div className="pt-4 text-xs font-mono text-slate-400">
-              Opposite NKGSB Bank, Nehru Road, Kammanahalli, Bengaluru • Mon–Sun
+              Opposite NKGSB Bank, Nehru Road, Kammanahalli, Bengaluru • Mon–Sun 9:00 AM – 11:00 PM
             </div>
           </div>
         </div>

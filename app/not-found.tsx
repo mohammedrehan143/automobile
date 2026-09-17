@@ -33,7 +33,7 @@ export default function NotFound() {
           </Link>
 
           <a
-            href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20need%20help%20with%20a%20service%20inquiry."
+            href="https://wa.me/918660520385?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20need%20help%20with%20a%20service%20inquiry."
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-3 px-4 bg-[#181a20] border border-white/15 text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-white/10 transition-colors flex items-center justify-center gap-2"

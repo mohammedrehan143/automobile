@@ -585,7 +585,7 @@ export default function Gallery() {
               </div>
 
               <a
-                href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
+                href="https://wa.me/918660520385?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20inquire%20about%20your%20services."
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setActiveModalIdx(null)}

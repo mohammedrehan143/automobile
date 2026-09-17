@@ -9,7 +9,7 @@ export default function Founder() {
     const text = encodeURIComponent(
       "Hello Indian Alignment, I would like to schedule an expert consultation directly with the Founder / Chief Technical Director regarding my vehicle."
     );
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   return (

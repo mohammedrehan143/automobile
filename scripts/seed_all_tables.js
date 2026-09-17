@@ -32,18 +32,18 @@ async function seedAllTables() {
   }
 
   // ---------------------------------------------------------------------------
-  // 2. BUSINESS HOURS (Mon-Sat 9AM-8:30PM, Sun 9:30AM-6PM)
+  // 2. BUSINESS HOURS (Mon-Sun 9AM-11PM)
   // ---------------------------------------------------------------------------
   console.log("\n[2/8] Seeding business_hours...");
   try {
     const hours = [
-      { day_of_week: 0, day_name: "Sunday", open_time: "09:30 AM", close_time: "06:00 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 1, day_name: "Monday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 2, day_name: "Tuesday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 3, day_name: "Wednesday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 4, day_name: "Thursday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 5, day_name: "Friday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
-      { day_of_week: 6, day_name: "Saturday", open_time: "09:00 AM", close_time: "08:30 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 0, day_name: "Sunday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 1, day_name: "Monday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 2, day_name: "Tuesday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 3, day_name: "Wednesday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 4, day_name: "Thursday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 5, day_name: "Friday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
+      { day_of_week: 6, day_name: "Saturday", open_time: "09:00 AM", close_time: "11:00 PM", slot_interval_minutes: 30, is_closed: false },
     ];
 
     const { error: bhErr } = await supabase.from("business_hours").upsert(hours, { onConflict: "day_of_week" });

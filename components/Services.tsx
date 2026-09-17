@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, Clock, CheckCircle, MessageCircle } from "lucide-react";
-import { SERVICES_DATA } from "@/lib/data";
+import { SERVICES_DATA, BUSINESS_INFO } from "@/lib/data";
 import { ServiceItem } from "@/lib/types";
 
 export default function Services({
@@ -28,7 +28,7 @@ export default function Services({
     const text = encodeURIComponent(
       `Hello Indian Alignment, I would like to book an appointment for: ${service.title}.`
     );
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   return (

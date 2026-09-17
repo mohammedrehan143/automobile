@@ -10,11 +10,11 @@ export const BUSINESS_INFO = {
   city: "Bengaluru",
   state: "Karnataka",
   pincode: "560084",
-  phone: "093438 42301",
-  phoneRaw: "9343842301",
-  phoneDisplay: "093438 42301",
-  phoneInternational: "+919343842301",
-  whatsappUrl: "https://wa.me/919343842301",
+  phone: "086605 20385",
+  phoneRaw: "8660520385",
+  phoneDisplay: "086605 20385",
+  phoneInternational: "+918660520385",
+  whatsappUrl: "https://wa.me/918660520385",
   googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.410943635952!2d77.6322306758466!3d13.009491713340578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1726a7cb812b%3A0xe54ef89dfa98c8c!2sIndian%20two%20and%20four%20wheeler%20alignment%20and%20repair!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin",
   directionsUrl: "https://maps.google.com/?q=Indian+Two+and+Four+Wheeler+Alignment+and+Repair+60/1+Nehru+Road+Opp+NKGSB+Bank+Kammanahalli+Bengaluru",
   latitude: 13.0095,
@@ -204,13 +204,13 @@ export const GALLERY_DATA: GalleryImage[] = [
 ];
 
 export const BUSINESS_HOURS: BusinessDayHours[] = [
-  { dayOfWeek: 1, dayName: "Monday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 2, dayName: "Tuesday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 3, dayName: "Wednesday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 4, dayName: "Thursday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 5, dayName: "Friday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 6, dayName: "Saturday", openTime: "09:30 AM", closeTime: "08:30 PM", isClosed: false },
-  { dayOfWeek: 0, dayName: "Sunday", openTime: "09:30 AM", closeTime: "06:00 PM", isClosed: false },
+  { dayOfWeek: 1, dayName: "Monday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 2, dayName: "Tuesday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 3, dayName: "Wednesday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 4, dayName: "Thursday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 5, dayName: "Friday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 6, dayName: "Saturday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
+  { dayOfWeek: 0, dayName: "Sunday", openTime: "09:00 AM", closeTime: "11:00 PM", isClosed: false },
 ];
 
 export const WORKSHOP_PROCESS_STEPS = [

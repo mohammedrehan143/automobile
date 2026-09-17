@@ -77,7 +77,7 @@ The database consists of 6 primary PostgreSQL tables on Supabase:
    - Primary key: `id` (UUID).
    - Transactional job ledger: `job_id`, `customer_name`, `customer_phone`, `vehicle_type`, `vehicle_brand`, `branch`, `services_done` (JSONB), `total_amount`, `payment_method`, `date`, `is_demo`.
 3. **`business_hours`**:
-   - Days 0 through 6 (Mon-Sat 9:00 AM - 8:30 PM, Sun 9:30 AM - 6:00 PM).
+   - Days 0 through 6 (Mon-Sun 9:00 AM - 11:00 PM).
 4. **`services`**:
    - Public service catalog items with description, pricing, and vehicle classification.
 5. **`reviews`**:

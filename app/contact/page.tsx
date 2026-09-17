@@ -9,7 +9,7 @@ import { BUSINESS_INFO } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: `Contact & Location | ${BUSINESS_INFO.name}`,
-  description: `Visit Indian Two and Four Wheeler Alignment and Repair at 60/1 Nehru Road, Opp NKGSB Bank, Kammanahalli, Bengaluru. Phone: 093438 42301.`,
+  description: `Visit Indian Two and Four Wheeler Alignment and Repair at 60/1 Nehru Road, Opp NKGSB Bank, Kammanahalli, Bengaluru. Phone: 086605 20385.`,
 };
 
 export default function ContactPage() {

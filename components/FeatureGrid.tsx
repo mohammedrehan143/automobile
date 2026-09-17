@@ -26,7 +26,7 @@ export default function FeatureGrid() {
   const openWhatsApp = (customMessage?: string) => {
     const defaultMsg = "Hello Indian Alignment, I would like to book a service appointment for my vehicle.";
     const text = encodeURIComponent(customMessage || defaultMsg);
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   return (
@@ -254,7 +254,7 @@ export default function FeatureGrid() {
                   Laser Calibration &amp; Overhaul
                 </h4>
                 <div className="font-mono text-[11px] text-slate-300 tracking-wide">
-                  Daily Sessions | 9:30 AM – 8:30 PM | Cars &amp; Bikes
+                  Daily Sessions | 9:00 AM – 11:00 PM | Cars &amp; Bikes
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed pt-1">
                   A precision night at Indian Alignment built around computer laser telemetry, live steering geometry, and curated mechanical tuning—where drivers connect in a refined setting.

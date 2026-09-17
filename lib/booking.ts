@@ -3,12 +3,16 @@ import { fetchAllBookings } from "./supabase";
 import { BUSINESS_INFO } from "./data";
 
 export const DEFAULT_SLOTS = [
+  "09:00 AM",
+  "09:30 AM",
   "10:00 AM",
   "10:30 AM",
   "11:00 AM",
   "11:30 AM",
   "12:00 PM",
   "12:30 PM",
+  "01:00 PM",
+  "01:30 PM",
   "02:00 PM",
   "02:30 PM",
   "03:00 PM",
@@ -20,6 +24,13 @@ export const DEFAULT_SLOTS = [
   "06:00 PM",
   "06:30 PM",
   "07:00 PM",
+  "07:30 PM",
+  "08:00 PM",
+  "08:30 PM",
+  "09:00 PM",
+  "09:30 PM",
+  "10:00 PM",
+  "10:30 PM",
 ];
 
 export function validateIndianPhone(phone: string): boolean {
@@ -89,7 +100,7 @@ Looking forward to the precision inspection. Thank you!`;
 export function generateCalendarUrl(booking: Booking): string {
   const title = encodeURIComponent(`${booking.serviceName} - Indian Wheel Alignment Kammanahalli`);
   const details = encodeURIComponent(
-    `Appointment for ${booking.vehicleType.toUpperCase()} (${booking.vehicleNumber}) with Indian Two and Four Wheeler Alignment and Repair.\nPhone: 093438 42301\nLocation: 60/1, Nehru Road, Opp. NKGSB Bank, Kammanahalli, Bengaluru 560084`
+    `Appointment for ${booking.vehicleType.toUpperCase()} (${booking.vehicleNumber}) with Indian Two and Four Wheeler Alignment and Repair.\nPhone: ${BUSINESS_INFO.phone}\nLocation: 60/1, Nehru Road, Opp. NKGSB Bank, Kammanahalli, Bengaluru 560084`
   );
   const location = encodeURIComponent(BUSINESS_INFO.location);
 

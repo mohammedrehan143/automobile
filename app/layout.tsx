@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     template: "%s | Indian Wheel Alignment Kammanahalli",
   },
   description:
-    "Expert computerized laser wheel alignment and precision argon TIG welding & fabrication for cars and bikes in Kammanahalli, Bengaluru. Call 093438 42301.",
+    "Expert computerized laser wheel alignment and precision argon TIG welding & fabrication for cars and bikes in Kammanahalli, Bengaluru. Call 086605 20385.",
   keywords: [
     "wheel alignment in Bengaluru",
     "wheel alignment Kammanahalli",
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "INDIAN TWO AND FOUR WHEELER ALIGNMENT AND REPAIR | Bengaluru",
     description:
-      "Precision computerized laser wheel alignment and argon TIG welding for cars and bikes in Bengaluru. Call 093438 42301.",
+      "Precision computerized laser wheel alignment and argon TIG welding for cars and bikes in Bengaluru. Call 086605 20385.",
     images: ["/shop-front.png"],
   },
   robots: {
@@ -134,15 +134,10 @@ export default function RootLayout({
           "Thursday",
           "Friday",
           "Saturday",
+          "Sunday",
         ],
-        opens: "09:30",
-        closes: "20:30",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Sunday",
-        opens: "09:30",
-        closes: "18:00",
+        opens: "09:00",
+        closes: "23:00",
       },
     ],
     aggregateRating: {

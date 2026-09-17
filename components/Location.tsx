@@ -8,7 +8,7 @@ export default function Location() {
     const text = encodeURIComponent(
       "Hello Indian Alignment, I would like to inquire about visiting your Kammanahalli workshop."
     );
-    window.open(`https://wa.me/919343842301?text=${text}`, "_blank");
+    window.open(`${BUSINESS_INFO.whatsappUrl}?text=${text}`, "_blank");
   };
 
   return (
@@ -75,12 +75,8 @@ export default function Location() {
                 </div>
                 <div className="space-y-1.5 font-mono text-xs">
                   <div className="flex justify-between text-slate-300">
-                    <span>Monday – Saturday:</span>
-                    <span className="text-white font-semibold">09:30 AM – 08:30 PM</span>
-                  </div>
-                  <div className="flex justify-between text-slate-300">
-                    <span>Sunday:</span>
-                    <span className="text-white font-semibold">09:30 AM – 06:00 PM</span>
+                    <span>Monday – Sunday:</span>
+                    <span className="text-white font-semibold">09:00 AM – 11:00 PM</span>
                   </div>
                 </div>
               </div>

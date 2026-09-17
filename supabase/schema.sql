@@ -262,19 +262,19 @@ CREATE TABLE IF NOT EXISTS public.business_hours (
     day_of_week INTEGER NOT NULL UNIQUE CHECK (day_of_week BETWEEN 0 AND 6),
     day_name TEXT NOT NULL,
     open_time TEXT NOT NULL DEFAULT '09:00 AM',
-    close_time TEXT NOT NULL DEFAULT '08:30 PM',
+    close_time TEXT NOT NULL DEFAULT '11:00 PM',
     slot_interval_minutes INTEGER NOT NULL DEFAULT 30,
     is_closed BOOLEAN NOT NULL DEFAULT false
 );
 
 INSERT INTO public.business_hours (day_of_week, day_name, open_time, close_time, slot_interval_minutes, is_closed) VALUES
-(0, 'Sunday', '09:30 AM', '06:00 PM', 30, false),
-(1, 'Monday', '09:00 AM', '08:30 PM', 30, false),
-(2, 'Tuesday', '09:00 AM', '08:30 PM', 30, false),
-(3, 'Wednesday', '09:00 AM', '08:30 PM', 30, false),
-(4, 'Thursday', '09:00 AM', '08:30 PM', 30, false),
-(5, 'Friday', '09:00 AM', '08:30 PM', 30, false),
-(6, 'Saturday', '09:00 AM', '08:30 PM', 30, false)
+(0, 'Sunday', '09:00 AM', '11:00 PM', 30, false),
+(1, 'Monday', '09:00 AM', '11:00 PM', 30, false),
+(2, 'Tuesday', '09:00 AM', '11:00 PM', 30, false),
+(3, 'Wednesday', '09:00 AM', '11:00 PM', 30, false),
+(4, 'Thursday', '09:00 AM', '11:00 PM', 30, false),
+(5, 'Friday', '09:00 AM', '11:00 PM', 30, false),
+(6, 'Saturday', '09:00 AM', '11:00 PM', 30, false)
 ON CONFLICT (day_of_week) DO NOTHING;
 
 CREATE TABLE IF NOT EXISTS public.blocked_dates (

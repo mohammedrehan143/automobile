@@ -150,7 +150,7 @@ export default function Navbar() {
             ))}
 
             <a
-              href="https://wa.me/919343842301?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20book%20a%20service."
+              href={`${BUSINESS_INFO.whatsappUrl}?text=Hello%20Indian%20Wheel%20Alignment%2C%20I%20would%20like%20to%20book%20a%20service.`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}

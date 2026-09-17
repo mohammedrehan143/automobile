@@ -44,7 +44,7 @@ You are an expert full-stack engineer and UI/UX designer. Build a complete, prod
 - Fixed sticky top navigation with subtle backdrop blur (`backdrop-blur-md bg-black/80`).
 - Brand badge: `INDIAN WHEEL ALIGNMENT • EST. 2002`.
 - Links: Services, Process, Heritage, Machinery, Reviews, Contact, and Appointment Booking.
-- Direct Emergency Hotline phone button (`+91 9343842301`).
+- Direct Emergency Hotline phone button (`+91 8660520385`).
 - Mobile sliding drawer for handheld devices.
 - **IMPORTANT:** Keep navigation focused on public consumers. Place workshop staff access links strictly in the footer.
 
@@ -91,7 +91,7 @@ You are an expert full-stack engineer and UI/UX designer. Build a complete, prod
 - Step 1: Vehicle type (Car / Bike), Brand, and Model.
 - Step 2: Preferred Branch selection (Kammanahalli Main, Indiranagar, Whitefield, Hebbal).
 - Step 3: Required services multi-select.
-- Step 4: Date and dynamic time slot selection (9:00 AM - 8:30 PM).
+- Step 4: Date and dynamic time slot selection (9:00 AM - 11:00 PM).
 - Generates pre-filled WhatsApp confirmation message upon booking completion.
 
 ### I. Comprehensive Footer (`components/Footer.tsx`)
