@@ -47,16 +47,36 @@ export default function Founder() {
           
           {/* Left Column: Founder Portrait (or Premium Placeholder ready for photo) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative w-full aspect-[3/4] rounded-none overflow-hidden border border-white/20 shadow-2xl group bg-[#0A0B0E]">
+            <div className="relative w-full aspect-[3/4] rounded-none overflow-hidden border border-white/10 shadow-2xl group bg-[#0A0B0E]">
               {FOUNDER_INFO.photo ? (
-                <Image
-                  src={FOUNDER_INFO.photo}
-                  alt={FOUNDER_INFO.name}
-                  fill
-                  quality={95}
-                  className="object-cover object-top brightness-105 contrast-[1.02] transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 100vw, 40vw"
-                />
+                <div className="relative w-full h-full">
+                  {/* Founder Portrait Image - 100% natural, crisp, un-faded */}
+                  <Image
+                    src={FOUNDER_INFO.photo}
+                    alt={FOUNDER_INFO.name}
+                    fill
+                    priority
+                    quality={95}
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+
+                  {/* Gentle bottom-only grounding fade - face and upper body remain 100% natural */}
+                  <div className="absolute bottom-0 inset-x-0 h-24 sm:h-28 bg-gradient-to-t from-[#0A0B0E] via-[#0A0B0E]/40 to-transparent pointer-events-none z-10" />
+
+                  {/* Bottom technical pill positioned safely at the base */}
+                  <div className="absolute bottom-3 left-3.5 right-3.5 z-20 pointer-events-none flex items-center justify-between">
+                    <div className="inline-flex items-center gap-2 px-2.5 py-1 bg-black/80 backdrop-blur-sm border border-amber-500/40 rounded-[2px]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse shadow-[0_0_8px_#f59e0b]" />
+                      <span className="font-mono text-[9px] sm:text-[10px] text-amber-300 font-bold uppercase tracking-wider">
+                        CHIEF TECHNICAL DIRECTOR
+                      </span>
+                    </div>
+                    <span className="font-mono text-[9px] sm:text-[10px] text-slate-300 bg-black/80 backdrop-blur-sm px-2 py-1 border border-white/15 tracking-wider">
+                      EST. 2002
+                    </span>
+                  </div>
+                </div>
               ) : (
                 /* Sleek Engineered Placeholder Frame (Photo Coming Soon) */
                 <div className="w-full h-full flex flex-col items-center justify-between p-6 sm:p-8 bg-gradient-to-b from-[#14161C] via-[#0E1015] to-[#08090C] relative">

@@ -38,11 +38,13 @@ Authentication is governed by 10-digit numeric passwords stored in the Supabase 
    - **RULE:** Indian Wheel Alignment was established in **2002**.
    - Always state **22+ Years of Experience / Leadership** across all marketing copy, founder badges, and metadata (never state 15 years).
 
-3. **Team Portrait Roles & Pointers:**
-   - Image located at `/public/team-portrait.png` or displayed in `components/About.tsx`.
-   - **Left Person:** Senior Engineer (Red indicator badge).
-   - **Right Person:** Mechanical Assistant (Cyan indicator badge).
-   - Pointers are rendered via responsive SVG coordinates with solid, non-pulsing target reticles.
+3. **Team & Founder Portrait Standards:**
+   - **About Section Team Portrait:** Image located at `/public/team.png` (displayed in `components/About.tsx`).
+     - **Left Person:** Senior Engineer (Red indicator badge).
+     - **Right Person:** Mechanical Assistant (Cyan indicator badge).
+     - Pointers are rendered via responsive SVG coordinates with solid, non-pulsing target reticles.
+   - **Founder / Owner Section Portrait:** Image located at `/public/image copy 6.png` & `/public/founder-portrait.png` (displayed in `components/Founder.tsx`).
+     - Rendered completely natural and clear without any top vignettes or fades over the face. Includes a subtle bottom-only grounding gradient and technical pill at the base.
 
 4. **Required Service Catalog Items:**
    - Must always feature **Tyre Change & Bead Seal** and **Custom Alloy Wheels Installation** in both public catalog (`components/Services.tsx`, `lib/data.ts`) and workshop presets (`lib/workshopData.ts`).
@@ -55,6 +57,11 @@ Authentication is governed by 10-digit numeric passwords stored in the Supabase 
    - The PIN authentication modal (`components/portal/PinAuthModal.tsx`) uses a **5+5 grouped layout** (`[●●●●●] - [●●●●●]`).
    - Automatically validates and submits upon typing the 10th digit.
    - Includes a clipboard listener for direct `Ctrl+V` pasting.
+
+7. **Zero Demo Orders & 24-Hour Daily Rollover Standards:**
+   - **RULE:** The live `workshop_jobs` table strictly maintains **0 demo orders** (`is_demo = false` only).
+   - Every 24 hours at midnight, the daily metrics automatically roll over for the next calendar day (`todayLocalDate`), starting the morning at 0 jobs and 0 revenue while preserving full historical turnover in Month and Year views.
+   - Background cron (`/api/cron/refresh-demo`) and `triggerDemoRefreshRPC` perform maintenance and purge any stray demo records with zero injection of fake data.
 
 ---
 

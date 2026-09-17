@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef } from "react";
 import { WORKSHOP_BRANCHES } from "@/lib/workshopData";
 import {
+  checkAndAutoRefreshDemoData,
   computeWorkshopStats,
   deleteWorkshopJob,
   exportJobsToCSV,
@@ -50,6 +51,7 @@ export default function AdminDashboard() {
   // Load Data from Supabase
   const loadData = async () => {
     setLoading(true);
+    await checkAndAutoRefreshDemoData();
     const [data, pins] = await Promise.all([
       fetchAllWorkshopJobs(),
       fetchPortalPinsFromBackend(),

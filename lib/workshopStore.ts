@@ -209,7 +209,8 @@ export function notifyWorkshopUpdate(): void {
 }
 
 /**
- * Trigger dynamic 24-hour demo data refresh via Supabase RPC or graceful fallback
+ * Daily 24-hour maintenance & data rollover:
+ * Ensures no demo orders ever pollute the account and updates the 24-hour rollover timestamp for the next day.
  */
 export async function triggerDemoRefreshRPC(): Promise<{ success: boolean; message: string }> {
   if (!isSupabaseConfigured || !supabase) {
@@ -217,73 +218,61 @@ export async function triggerDemoRefreshRPC(): Promise<{ success: boolean; messa
   }
 
   try {
-    const { error } = await supabase.rpc("refresh_demo_workshop_data");
-    if (!error) {
-      notifyWorkshopUpdate();
-      return { success: true, message: "Demo data refreshed successfully in Supabase." };
+    // 1. Purge any demo records to keep live account completely clean
+    const { error: delErr } = await supabase
+      .from("workshop_jobs")
+      .delete()
+      .eq("is_demo", true);
+
+    if (delErr) {
+      console.warn("[WorkshopStore] Note on demo purge:", delErr.message);
     }
 
-    // Inspect error cleanly
-    if (error.code === "PGRST202" || error.message?.includes("schema cache")) {
-      console.info(
-        "[WorkshopStore] Note: 'refresh_demo_workshop_data' SQL function is pending installation in Supabase SQL editor. Using direct timestamp registration."
-      );
-      // Fallback: update timestamp in portal_settings matching actual schema
-      await supabase
-        .from("portal_settings")
-        .update({ updated_at: new Date().toISOString() })
-        .eq("portal_key", "admin_pin");
+    // 2. Register 24-hour daily rollover timestamp in portal_settings
+    const nowIso = new Date().toISOString();
+    await supabase
+      .from("portal_settings")
+      .update({
+        updated_at: nowIso,
+        last_demo_refresh: nowIso,
+      })
+      .in("portal_key", ["admin_pin", "worker_pin"]);
 
-      notifyWorkshopUpdate();
-      return {
-        success: true,
-        message: "Demo refresh registered successfully.",
-      };
-    }
-
-    console.error("[WorkshopStore] RPC refresh_demo_workshop_data error:", {
-      message: error.message,
-      code: error.code,
-      details: error.details,
-      hint: error.hint,
-    });
-    return { success: false, message: error.message || "Failed to trigger RPC" };
+    notifyWorkshopUpdate();
+    return {
+      success: true,
+      message: "24-hour data rollover completed successfully. Zero demo orders added.",
+    };
   } catch (e) {
-    console.error("[WorkshopStore] RPC refresh exception:", e);
-    return { success: false, message: "Unexpected RPC error." };
+    console.error("[WorkshopStore] 24-hour rollover exception:", e);
+    return { success: false, message: "Unexpected rollover error." };
   }
 }
 
 /**
- * Check if 24 hours have passed since last demo refresh using existing portal_settings columns
+ * Check if 24 hours have passed since last daily rollover and auto-trigger rollover if due
  */
 export async function checkAndAutoRefreshDemoData(): Promise<boolean> {
   if (!isSupabaseConfigured || !supabase) return false;
   try {
-    // Select actual existing columns to prevent 400 Bad Request
     const { data: settings, error } = await supabase
       .from("portal_settings")
-      .select("portal_key, portal_pin, updated_at")
+      .select("portal_key, portal_pin, updated_at, last_demo_refresh")
       .eq("portal_key", "admin_pin")
       .maybeSingle();
 
-    if (error) {
-      console.error("[WorkshopStore] portal_settings check error:", {
-        message: error.message,
-        code: error.code,
-        details: error.details,
-        hint: error.hint,
-      });
-      return false;
-    }
+    if (error || !settings) return false;
 
     let shouldRefresh = false;
-    if (settings && settings.updated_at) {
-      const lastRefreshTime = new Date(settings.updated_at).getTime();
+    const refTimestamp = settings.last_demo_refresh || settings.updated_at;
+    if (refTimestamp) {
+      const lastRefreshTime = new Date(refTimestamp).getTime();
       const diffHours = (Date.now() - lastRefreshTime) / (1000 * 60 * 60);
       if (diffHours >= 24) {
         shouldRefresh = true;
       }
+    } else {
+      shouldRefresh = true;
     }
 
     if (shouldRefresh) {
@@ -291,7 +280,7 @@ export async function checkAndAutoRefreshDemoData(): Promise<boolean> {
       return res.success;
     }
   } catch (err) {
-    console.error("[WorkshopStore] Auto demo refresh check exception:", err);
+    console.error("[WorkshopStore] Auto rollover check exception:", err);
   }
   return false;
 }

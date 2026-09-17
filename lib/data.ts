@@ -30,7 +30,7 @@ export const FOUNDER_INFO: FounderInfo = {
   yearsExperience: "22+ Years",
   story: "Established on Nehru Road opposite NKGSB Bank in Kammanahalli, Indian Wheel Alignment was built on uncompromising mechanical mastery. Over 22 years of hands-on calibration, our founder pioneered multi-axis computerized laser diagnostics and precision hydraulic bench truing, establishing Kammanahalli's most trusted benchmark for vehicle safety and performance.",
   quote: "True craftsmanship in automotive calibration isn't just about reading digital sensors—it's about understanding how steel, alloy, and rubber interact at highway speeds. For over 22 years, we've treated every single rider and driver's vehicle as if our own families were on board.",
-  photo: "", // Placeholder - ready for photo upload by user
+  photo: "/founder-portrait.png",
   milestones: [
     { label: "Founded", val: "2002" },
     { label: "Vehicles Calibrated", val: "28,000+" },
